@@ -6,6 +6,7 @@
 \usepackage[ngerman,english]{babel}
 \PassOptionsToPackage{math-style=ISO, bold-style=ISO, sans-style=italic, nabla=upright, partial=upright, warnings-off={mathtools-colon,mathtools-overbracket}}{unicode-math}
 \usepackage{mathtools, microtype}
+\usepackage{setspace}
 \usepackage[style=british]{csquotes}
 % \usepackage{fontsetup}
 % \usepackage[mathscr]{eucal}
@@ -379,6 +380,8 @@
 	\nocite{*}
 	\printbibliography[heading=bibintoc]
 
-	{\footnotesize The source code, updates and corrections to this document can be found on this GitHub repository: \url{https://github.com/apoorvpotnis/schuller_rigged_hilbert_spaces}. The source code, along with the \texttt{.bib} file is embedded in this PDF. Comments and corrections can be mailed at \href{mailto:apoorvpotnis@gmail.com}{apoorvpotnis@gmail.com}.}
+	\par\begin{spacing}{0.6}
+		{\footnotesize The source code, updates and corrections to this document can be found on this GitHub repository: \url{https://github.com/apoorvpotnis/schuller_rigged_hilbert_spaces}. The source code, along with the \texttt{.bib} file is embedded in this PDF. Comments and corrections can be mailed at \href{mailto:apoorvpotnis@gmail.com}{\texttt{apoorvpotnis@gmail.com}}.}
+	\end{spacing}
 
 \end{document}
