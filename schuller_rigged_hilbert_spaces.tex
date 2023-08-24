@@ -109,6 +109,9 @@
 	}%
 }
 
+\usepackage{etoolbox}
+\apptocmd{\sloppy}{\hbadness 10000\relax}{}{}
+
 \begin{document}
 
 	\maketitle
@@ -365,14 +368,17 @@
 
 	We defined the space of tempered distributions $\distr$ as the space of continuous linear functionals on $\schwartzr$. A mapping
 	\begin{align*}
-		\Psi &\colon \schwartzr \rightarrow \cc\\
+		\Psi &\colon \schwartzr \rightarrow \cc,\\
 		\Psi &\colon f \mapsto \Psi(f)
 	\end{align*}
 	is said to be \textit{anti-linear} if
-	\begin{align*}
-		\Psi(f + g) &= \Psi(f) + \Psi(g) \text{ and } \\
-		\Psi(\lambda f) &= \overbar{\lambda} \Psi(f),
-	\end{align*}
+	\[
+		\Psi(f + g) = \Psi(f) + \Psi(g),
+	\]
+	and
+	\[
+	    \Psi(\lambda f) = \overbar{\lambda}\Psi(f)
+	\]
 	for all $f, g \in \schwartzr$ and $\lambda \in \cc$. Here, $\overbar{\lambda}$ denotes the complex conjugate of $\lambda$.
 
 	We denote the space of all continuous, anti-linear functionals by $\overline{\distr}$. Elements of $\overline{\distr}$ are identified with \textit{kets} and elements of $\distr$ are identified with \textit{bras} in quantum mechanics. Thus, we can call $\overline{\distr}$ the \textit{ket-space} and $\distr$ the \textit{bra-space}. We note that $\overline{\distr}$ is isomorphic to $\distr$ as a vector space. Thus, there is a one-to-one correspondence between kets and bras.
