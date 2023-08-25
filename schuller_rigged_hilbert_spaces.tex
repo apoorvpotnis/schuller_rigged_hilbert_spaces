@@ -70,7 +70,7 @@
 \newcommand{\ltwor}{\ltwo(\rr)}
 % \newcommand{\poly}{\itcal{𝒫}\kern-0.5pt}
 \newcommand{\poly}{𝒫}
-\newcommand{\schwartz}{\itcal{𝒮}\kern-2pt}
+\newcommand{\schwartz}{\kern0.5pt\itcal{𝒮}\kern-2pt}
 % \newcommand{\schwartz}{\mathcal{S}}
 \newcommand{\schwartzr}{\schwartz(\rr)}
 \newcommand{\dist}{\itcal{\schwartz^\times}\kern-0.5pt}
@@ -256,7 +256,7 @@
 % 		(\Phi_\phi)_0(x) = \phi(x)
 % 	\]
 % 	and $(\Phi_\phi)_m(x) = 0$ for all other $m \in \nn$.
-	It can be shown that the above embedding function is continuous, i.e.\@ $\Phi_\phi$ is a continuous linear functional. Thus, $\Phi_\phi$ is a tempered distribution. This enables us to write $\ltwor \xhookrightarrow{} \distr$, and by abuse of notation, $\eta (\ltwor) \subset \distr$ can be written as $\ltwor \subset \distr$.
+	It can be shown that the above embedding function defines each $\Phi_\phi[f]$ to be a continuous linear functional for all $\phi \in \ltwor$ and $f \in \schwartzr$. Thus, $\Phi_\phi$ is a tempered distribution. This enables us to write $\ltwor \xhookrightarrow{} \distr$, and by abuse of notation, $\eta (\ltwor) \subset \distr$ can be written as $\ltwor \subset \distr$.
 
 % 	\bigskip
 %
@@ -360,7 +360,7 @@
 	\[
 	\hat{\momentum}\kern0.8pt\mathrm{E}_k = \hbar k \cdot \mathrm{E}_k.
 	\]
-	We note a monumental result that a self-adjoint operator on our rigged Hilbert space, $\schwartzr \subset \ltwor \subset \distr$ has a complete system of generalised eigenvectors with real eigenvalues. The same holds true for unitary operators as well, with complex eigenvalues of unit modulus.
+	We note a monumental result that a self-adjoint operator on our rigged Hilbert space, $\schwartzr \subset \ltwor \subset \distr$, has a complete system of generalised eigenvectors with real eigenvalues. The same holds true for unitary operators as well, with complex eigenvalues of unit modulus.
 
 	\section{Bras and kets}
 
@@ -377,11 +377,11 @@
 	\]
 	and
 	\[
-	    \Psi(\lambda f) = \overbar{\lambda}\Psi(f)
+	    \Psi(\lambda f) = \lambda^\dagger\Psi(f)
 	\]
-	for all $f, g \in \schwartzr$ and $\lambda \in \cc$. Here, $\overbar{\lambda}$ denotes the complex conjugate of $\lambda$.
+	for all $f, g \in \schwartzr$ and $\lambda \in \cc$. Here, $\lambda^\dagger$ denotes the complex conjugate of $\lambda$.
 
-	We denote the space of all continuous, anti-linear functionals by $\overline{\distr}$. Elements of $\overline{\distr}$ are identified with \textit{kets} and elements of $\distr$ are identified with \textit{bras} in quantum mechanics. Thus, we can call $\overline{\distr}$ the \textit{ket-space} and $\distr$ the \textit{bra-space}. We note that $\overline{\distr}$ is isomorphic to $\distr$ as a vector space. Thus, there is a one-to-one correspondence between kets and bras.
+	We denote the space of all continuous, anti-linear functionals by $\schwartz^\dagger(\rr)$. Elements of $\schwartz^\dagger(\rr)$ are identified with \textit{kets} and elements of $\distr$ are identified with \textit{bras} in quantum mechanics. Thus, we can call $\schwartz^\dagger(\rr)$ the \textit{ket-space} and $\distr$ the \textit{bra-space}. We note that $\schwartz^\dagger(\rr)$ is isomorphic to $\distr$ as a vector space. Thus, there is a one-to-one correspondence between kets and bras.
 
 	\nocite{*}
 	\printbibliography[heading=bibintoc]
