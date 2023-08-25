@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[a4 paper]{article}
 
 \usepackage{embedall}
 \embedfile{schuller_rigged_hilbert_spaces.bib}
@@ -197,7 +197,7 @@
 	\[
 	\schwartzr \coloneq \{f \in \cinfinity(\rr, \cc) \mid \norm{f}_{k,l} < \infty \text{ for all } k, l \in \nn\}.
 	\]
-	It is also referred as the \textit{space of rapidly decreasing test functions}. The elements of $\schwartzr$ are sometimes referred to as \textit{test functions}. This space is named after the French mathematician Laurent Schwartz.
+	It is also referred to as the \textit{space of rapidly decreasing test functions}. The elements of $\schwartzr$ are sometimes called as \textit{test functions}. This space is named after the French mathematician Laurent Schwartz.
 
 	The identity function does not belong to the Schwartz space. If $f(x) = x$, $k=1$ and $l=0$, then the supremum is not bounded as $\sup_{x \in \rr} \abs{x \cdot x} = \infty$.
 
@@ -210,7 +210,7 @@
 	\[
 		\Phi[f] = \int_{\rr} \der x \sum_{m \in \nn} \Phi_m (x) \cdot f^{(m)} (x).
 	\]
-	It is customary to use the notation $\Phi[f]$ to use the denote that $\Phi$ acts on $f$. It is in general useful to search for solutions in the space of distributions in the study of linear differential equations. Thus, in order to define a tempered distribution, one only needs to define a family of  continuous, polynomially bounded functions from the reals to complex numbers.
+	It is customary to use the notation $\Phi[f]$ to use the denote that $\Phi$ acts on $f$. Thus, in order to define a tempered distribution, one only needs to define a family of  continuous, polynomially bounded functions from the reals to complex numbers. It is in general useful to search for solutions in the space of distributions in the study of linear differential equations.
 
 % 	\[
 % 	\distr \coloneq \left\{\Phi \mathrel{\bigg|} \Phi \in \distar, \forall f \in \schwartzr : \Phi[f] = \int_{\rr} \der x \sum_{m \in \nn} \Phi_m (x) \cdot f^{(m)} (x) \right\},
@@ -312,7 +312,7 @@
 	\[
 		\w_A(\lambda) = \overline{\w_A(\lambda)} = \hilbert.
 	\]
-	Here, $\overline{\w_A(\lambda)}$ denotes the topological closure of $\w_A(\lambda)$. The set of regular points is called a \textit{resolvent set}. The complement of the resolvent set is known as the \textit{spectrum} $\spec(A)$ of the operator. $\spec(A) = \cc \setminus \resolvent(A)$.
+	Here, $\overline{\w_A(\lambda)}$ denotes the topological closure of $\w_A(\lambda)$. The set of regular points is called a \textit{resolvent set}. The complement of the resolvent set is known as the \textit{spectrum} of the operator, denoted as $\spec(A)$. $\spec(A) = \cc \setminus \resolvent(A)$.
 
 	We define a decomposition of the spectrum of our self-adjoint operator $A$ as follows.
 	\begin{enumerate}
