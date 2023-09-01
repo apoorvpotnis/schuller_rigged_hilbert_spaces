@@ -225,7 +225,21 @@
 			0 & \text{if $x < \lambda$}
 		\end{cases}
 	\]
-	and $(\dirac_\lambda)_m = 0$ for all $m \neq 2$. The reader is advised to show that $\dirac_\lambda[f] = f(\lambda)$ for all $f \in \schwartzr$.
+	and $(\dirac_\lambda)_m = 0$ for all $m \neq 2$ and $\lambda \in \rr$. The now show that $\dirac_\lambda[f] = f(\lambda)$ for all $f \in \schwartzr$, expected. We see that
+	\begin{align*}
+		\dirac_\lambda [f] &= \int_{\rr} (\dirac_\lambda)_2 (x) \cdot f^{(2)} (x) \der x,\\
+		\dirac_\lambda [f] &= \int_\lambda^{+\infty} (x - \lambda)\cdot f^{(2)} (x) \der x,\\
+		\dirac_\lambda [f] &= \int_\lambda^{+\infty} x\cdot f^{(2)} (x) \der x - \lambda \int_\lambda^{+\infty} f^{(2)} (x) \der x,
+	\end{align*}
+	Integrating by parts the first term and evaluating the second term leads to
+	\begin{align*}
+		\dirac_\lambda [f] &= \left(\left[x \cdot f^{(1)}(x)\right]_{x = \lambda}^{x = +\infty} - \int_\lambda^{+\infty} x^{(1)}\cdot f^{(1)} (x) \der x\right) - \left[\lambda \cdot f^{(1)} (x)\right]_{x = \lambda}^{x = +\infty}.
+	\end{align*}
+	$f$ and its all derivatives vanish at $+\infty$ since $f \in \schwartzr$. Thus, we are left with
+	\begin{align*}
+	    \dirac_\lambda [f] &= \lambda \cdot f^{(1)}(\lambda) - f(\lambda) - \lambda \cdot f^{(1)}(\lambda),\\
+		\dirac_\lambda [f] &= f(\lambda).
+	\end{align*}
 
 	We now look at plane waves $\mathrm{E}_k \in \distr$ of wavenumber $k \in \nn$. These are very important for quantum mechanics. $\mathrm{E}_k$ is defined by \[(\mathrm{E}_k)_0 (x) = \e^{\i kx}\] and $(\mathrm{E}_k)_m = 0$ for all $m \neq 0$. Note that $\mathrm{E}_k \notin \ltwor \supset \schwartzr$.
 
