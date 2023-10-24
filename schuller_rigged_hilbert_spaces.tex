@@ -1,3 +1,4 @@
+% \DocumentMetadata{pdfstandard=A-3b}
 \documentclass[12pt, a4 paper]{article}
 
 \usepackage{embedall}
@@ -54,7 +55,8 @@
 \usepackage[sorting=none]{biblatex}
 \addbibresource{schuller_rigged_hilbert_spaces.bib}
 \usepackage{hyperref}
-\hypersetup{linktoc=all, citecolor=red, pdfencoding=auto, psdextra, colorlinks=true, linkcolor=red, breaklinks=true, urlcolor=blue, pdftitle={Schuller – Rigged Hilbert Spaces}, bookmarksopen=true, pdfauthor={Apoorv Potnis}, pdfsubject={Rigged Hilbert Spaces – Quantum Mechanics}, unicode=true, pdftoolbar=true, pdfmenubar=true, pdfstartview={FitH}, pdfkeywords={Frederic Schuller, Rigged Hilbert Spaces, Quantum Mechanics, Mathematical Physics, Lecture Notes}}
+\hypersetup{linktoc=all, citecolor=red, pdfencoding=auto, psdextra, colorlinks=true, linkcolor=red, breaklinks=true, urlcolor=blue, pdftitle={Schuller – Rigged Hilbert Spaces}, bookmarksopen=true, pdfauthor={Apoorv Potnis}, pdfsubject={Rigged Hilbert Spaces – Quantum Mechanics}, unicode=true, pdftoolbar=true, pdfmenubar=true, pdfstartview={FitH}, pdfkeywords={Frederic Schuller, Rigged Hilbert Spaces, Quantum Mechanics, Mathematical Physics, Lecture Notes, Bras, Kets}}
+% \hypersetup{linktoc=all, citecolor=black, pdfencoding=auto, psdextra, colorlinks=true, linkcolor=black, breaklinks=true, urlcolor=black, pdftitle={Schuller – Rigged Hilbert Spaces}, bookmarksopen=true, pdfauthor={Apoorv Potnis}, pdfsubject={Rigged Hilbert Spaces – Quantum Mechanics}, unicode=true, pdftoolbar=true, pdfmenubar=true, pdfstartview={FitH}, pdfkeywords={Frederic Schuller, Rigged Hilbert Spaces, Quantum Mechanics, Mathematical Physics, Lecture Notes, Bras, Kets}}
 \usepackage{cleveref, xurl, bookmark}
 
 \newcommand{\ltwo}{\mathup{L\kern-0.5pt^2}}
@@ -118,7 +120,7 @@
 
 	\maketitle
 
-	These are lecture notes by Apoorv Potnis of the lecture `\selectlanguage{ngerman}Aufgetakelte Hilberträume\selectlanguage{english}' or `Rigged Hilbert Spaces', given by \textbf{Dr.\@ Frederic P.\@ Schuller}, as the eighth lecture in the course `\selectlanguage{ngerman}Theoretische Physik 2: Theoretische Quantenmechanik\selectlanguage{english}' in 2014 at the \selectlanguage{ngerman}Friedrich-Alexander-Universität Erlangen-Nürnberg\selectlanguage{english}. While the original lecture is in German, these notes are in English and have been prepared using YouTube's automatic subtitle translation tool. The lecture is available at \url{https://www.youtube.com/watch?v=FNJOyxOp3Ik&list=PLPO5pgr_frzTeqa_thbltYjyw8F9ehw7v&index=8} and at \url{https://www.fau.tv/clip/id/4301}.
+	These are lecture notes by Apoorv Potnis of the lecture `\selectlanguage{ngerman}Aufgetakelte Hilberträume\selectlanguage{english}' or `Rigged Hilbert Spaces', given by \textbf{Prof.\@ Frederic Paul Schuller}, as the eighth lecture in the course `\selectlanguage{ngerman}Theoretische Physik 2: Theoretische Quantenmechanik\selectlanguage{english}' in 2014 at the \selectlanguage{ngerman}Friedrich-Alexander-Universität Erlangen-Nürnberg\selectlanguage{english}. While the original lecture is in German, these notes are in English and have been prepared using YouTube's automatic subtitle translation tool. The lecture is available at \url{https://www.youtube.com/watch?v=FNJOyxOp3Ik&list=PLPO5pgr_frzTeqa_thbltYjyw8F9ehw7v&index=8} and at \url{https://www.fau.tv/clip/id/4301}.
 
 	\mathversion{bold}\tableofcontents\mathversion{regular}
 
@@ -160,7 +162,7 @@
 	We shall define the position and momentum operators on $\schwartzr$ and see that these operators linearly map $\schwartzr$ to $\schwartzr$.
 	\begin{align*}
 	    \position &\colon \schwartzr \rightarrow \schwartzr,\\
-		\position &\colon f \mapsto \position f
+		\position &\colon f \mapsto \position f,
 	\end{align*}
 	with
 	\[
@@ -169,7 +171,7 @@
 	and
 	\begin{align*}
 	    \momentum &\colon \schwartzr \rightarrow \schwartzr,\\
-		\momentum &\colon f \mapsto \momentum f
+		\momentum &\colon f \mapsto \momentum f,
 	\end{align*}
 	with
 	\[
@@ -310,7 +312,7 @@
 	However, the Schwartz space $\schwartzr$ is a very small space. We want to somehow define the differential operator on $\ltwor$, but as we already know, the functions belonging to $\ltwor$ may not be differentiable. We can extend or lift the differential operator to $\distr$, and consequently to $\ltwor$, using something known as a \textit{weak derivative}. We won't discuss the weak derivative in this lecture, but the interested reader is requested to look at the ninth lecture `Case study: Momentum operator' of the English quantum mechanics series~\cite{Schuller, SchullerVideos}. We now define the lift $\lift$ of the operator $D$ as follows.
 	\begin{align*}
 		\lift &\colon \distr \rightarrow \distr,\\
-		\lift &\colon \Phi \mapsto \lift\Phi
+		\lift &\colon \Phi \mapsto \lift\Phi,
 	\end{align*}
 	by
 	\[
@@ -385,7 +387,7 @@
 	We defined the space of tempered distributions $\distr$ as the space of continuous linear functionals on $\schwartzr$. A mapping
 	\begin{align*}
 		\Psi &\colon \schwartzr \rightarrow \cc,\\
-		\Psi &\colon f \mapsto \Psi(f)
+		\Psi &\colon f \mapsto \Psi(f),
 	\end{align*}
 	is said to be \textit{anti-linear} if
 	\[
@@ -400,7 +402,7 @@
 	We denote the space of all continuous anti-linear functionals on $\schwartzr$ by $\anti$. If $\Phi \in \distr$, then we define the vector space isomorphism
 	\begin{align*}
 	    \Lambda &\colon \distr \rightarrow \anti,\\
-		\Lambda &\colon \Phi \rightarrow \Lambda(\Phi),
+		\Lambda &\colon \Phi \mapsto \Lambda(\Phi),
 	\end{align*}
 	by
 	\begin{align*}
@@ -419,7 +421,7 @@
 	where $\overline{f(x)}$ denotes the complex conjugate of $f(x)$.
 	It can be shown that the above embedding function defines each $\Psi_\phi[f]$ to be a continuous anti-linear functional for all $\phi \in \ltwor$ and $f \in \schwartzr$. Just like the case for tempered distributions, we have $\ltwor \xhookrightarrow{} \anti$, and by abuse of notation, $\omega(\ltwor) \subset \anti$ can be written as $\ltwor \subset \anti$.
 
-	Elements of $\anti$ are identified with \textit{kets} and elements of $\distr$ are identified with \textit{bras} in quantum mechanics. Thus, we can call $\anti$ the \textit{ket-space} and $\distr$ the \textit{bra-space}. Since $\Lambda$ is an isomorphism, there is a one-to-one correspondence between kets and bras. It should be noted that some authors such as Bowers~\cite[chp.~5]{Bowers} call the images of the embeddings $\ltwor \xhookrightarrow{} \distr$ and $\ltwor \xhookrightarrow{} \anti$ as the bra-space and the ket-space respectively. We recommend the reader look up chp.~5 in the book of Bowers~\cite{Bowers} for a discussion of the Dirac calculus in a mathematically rigorous fashion.
+	Elements of $\anti$ are identified with \textit{kets} and elements of $\distr$ are identified with \textit{bras} in quantum mechanics. Thus, we can call $\anti$ the \textit{ket-space} and $\distr$ the \textit{bra-space}. Since $\Lambda$ is an isomorphism, there is a one-to-one correspondence between kets and bras. It should be noted that some authors such as Bowers~\cite[chp.~5]{Bowers} call the images $\eta(\ltwor)$ and $\omega(\ltwor)$ of the embeddings $\ltwor \xhookrightarrow{} \distr$ and $\ltwor \xhookrightarrow{} \anti$ as the bra-space and the ket-space respectively. We recommend the reader consult chp.~5 in the book of Bowers~\cite{Bowers} for a discussion of the Dirac calculus in a mathematically rigorous fashion.
 
 % 	\section{Properties of the Dirac delta distribution}
 %
