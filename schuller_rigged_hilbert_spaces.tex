@@ -77,6 +77,7 @@
 % \newcommand{\dist}{\schwartz^\times}
 \newcommand{\distr}{\dist(\rr)}
 \newcommand{\distar}{\schwartz^{\kern-0.1pt*}(\rr)}
+\newcommand{\anti}{\overline{\distr}}
 \renewcommand*{\hbar}{\mathrm{^^^^0127}}
 \renewcommand{\i}{\mathrm{i}}
 \newcommand{\e}{\mathrm{e}}
@@ -392,23 +393,23 @@
 	\]
 	and
 	\[
-	    \Psi(\lambda f) = \lambda^\dagger\Psi(f)
+	    \Psi(\lambda f) = \overline{\lambda}\Psi(f)
 	\]
-	for all $f, g \in \schwartzr$ and $\lambda \in \cc$. Here, $\lambda^\dagger$ denotes the complex conjugate of $\lambda$.
+	for all $f, g \in \schwartzr$ and $\lambda \in \cc$, where $\overline{\lambda}$ denotes the complex conjugate of $\lambda$.
 
-	We denote the space of all continuous anti-linear functionals on $\schwartzr$ by $\schwartz^\dagger(\rr)$. If $\Phi \in \distr$, then we define the vector space isomorphism
+	We denote the space of all continuous anti-linear functionals on $\schwartzr$ by $\anti$. If $\Phi \in \distr$, then we define the vector space isomorphism
 	\begin{align*}
-	    \Lambda &\colon \distr \rightarrow \schwartz^\dagger(\rr),\\
+	    \Lambda &\colon \distr \rightarrow \anti,\\
 		\Lambda &\colon \Phi \rightarrow \Lambda(\Phi),
 	\end{align*}
 	by
 	\begin{align*}
-		(\Lambda(\Phi))[f] \coloneq \int_{\rr} \der x \sum_{m \in \nn} \Phi_m (x) \cdot \overline{f^{(m)}} (x).
+		(\Lambda(\Phi))[f] \coloneq \int_{\rr} \der x \sum_{m \in \nn} \Phi_m (x) \cdot \overline{f^{(m)} (x)}.
 	\end{align*}
 
-	Just like we embedded $\ltwor$ in $\schwartzr$, we can embed $\ltwor$ in $\schwartz^\dagger(\rr)$. We define the embedding
+	Just like we embedded $\ltwor$ in $\schwartzr$, we can embed $\ltwor$ in $\anti$. We define the embedding
 	\begin{align*}
-		\omega &\colon \ltwor \rightarrow \schwartz^\dagger(\rr),\\
+		\omega &\colon \ltwor \rightarrow \anti,\\
 		\omega &\colon \phi \mapsto \Psi_\phi,
 	\end{align*}
 	where
@@ -416,9 +417,9 @@
 		\Psi_\phi [f] \coloneq \int_{\rr} \phi(x) \cdot \overline{f(x)} \der x,
 	\]
 	where $\overline{f(x)}$ denotes the complex conjugate of $f(x)$.
-	It can be shown that the above embedding function defines each $\Psi_\phi[f]$ to be a continuous anti-linear functional for all $\phi \in \ltwor$ and $f \in \schwartzr$. Just like the case for tempered distributions, we thus have $\ltwor \xhookrightarrow{} \schwartz^\dagger(\rr)$, and by abuse of notation, $\omega(\ltwor) \subset \distr$ can be written as $\ltwor \subset \schwartz^\dagger(\rr)$.
+	It can be shown that the above embedding function defines each $\Psi_\phi[f]$ to be a continuous anti-linear functional for all $\phi \in \ltwor$ and $f \in \schwartzr$. Just like the case for tempered distributions, we have $\ltwor \xhookrightarrow{} \anti$, and by abuse of notation, $\omega(\ltwor) \subset \anti$ can be written as $\ltwor \subset \anti$.
 
-	Elements of $\schwartz^\dagger(\rr)$ are identified with \textit{kets} and elements of $\distr$ are identified with \textit{bras} in quantum mechanics. Thus, we can call $\schwartz^\dagger(\rr)$ the \textit{ket-space} and $\distr$ the \textit{bra-space}. Since $\Lambda$ is an isomorphism, there is a one-to-one correspondence between kets and bras. It should be noted that some authors such as Bowers~\cite[chp.~5]{Bowers} call the images of the embeddings $\ltwor \xhookrightarrow{} \distr$ and $\ltwor \xhookrightarrow{} \schwartz^\dagger(\rr)$ as the bra-space and the ket-space respectively. We recommend the reader look up chp.~5 in the book of Bowers~\cite{Bowers} for a discussion of the Dirac calculus in a mathematically rigorous fashion.
+	Elements of $\anti$ are identified with \textit{kets} and elements of $\distr$ are identified with \textit{bras} in quantum mechanics. Thus, we can call $\anti$ the \textit{ket-space} and $\distr$ the \textit{bra-space}. Since $\Lambda$ is an isomorphism, there is a one-to-one correspondence between kets and bras. It should be noted that some authors such as Bowers~\cite[chp.~5]{Bowers} call the images of the embeddings $\ltwor \xhookrightarrow{} \distr$ and $\ltwor \xhookrightarrow{} \anti$ as the bra-space and the ket-space respectively. We recommend the reader look up chp.~5 in the book of Bowers~\cite{Bowers} for a discussion of the Dirac calculus in a mathematically rigorous fashion.
 
 % 	\section{Properties of the Dirac delta distribution}
 %
