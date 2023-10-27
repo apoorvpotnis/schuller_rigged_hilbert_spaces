@@ -6,6 +6,7 @@
 
 \usepackage[ngerman,english]{babel}
 \PassOptionsToPackage{math-style=ISO, bold-style=ISO, sans-style=italic, nabla=upright, partial=upright, warnings-off={mathtools-colon,mathtools-overbracket}}{unicode-math}
+% \PassOptionsToPackage{warnings-off={mathtools-colon,mathtools-overbracket}}{unicode-math}
 \usepackage{mathtools, microtype}
 \usepackage{setspace}
 \usepackage[style=british]{csquotes}
@@ -14,17 +15,17 @@
 % \setmathfontface\itcal{NewCMMath-Book}[FakeSlant=-0.25]
 \usepackage{kpfonts-otf}
 % \setmainfont[Ligatures=Required]{KpRoman}
-\setmathfont{KpMath-Bold.otf}[version=bold]
+% \setmathfont{KpMath-Bold.otf}[version=bold]
 % \setmathfont{KpMath-Regular.otf}[range={cal,bfcal},RawFeature=+ss01,BoldFont=KpMath-Bold.otf]
-\setmathfont{KpMath-Regular.otf}[version=regular]
+% \setmathfont{KpMath-Regular.otf}[version=regular]
 % \setmathfont{KpMath-Regular}[range={cal,bfcal},StylisticSet=1]
 % \usepackage{sectsty}
 % \allsectionsfont{\mathversion{bold}}
-\setmathfontface\itcal{KpMath-Regular.otf}[FakeSlant=-0.4]
+% \setmathfontface\itcal{KpMath-Regular.otf}[FakeSlant=-0.4]
 % \usepackage{newtx}
-\usepackage[bold=0.1]{xfakebold}
+% \usepackage[bold=0.1]{xfakebold}
 % \usepackage{xfp}
-\usepackage{dsfont}
+% \usepackage{dsfont}
 % \renewcommand{\mathbb}{\mathbf}
 % \renewcommand{\mathbb}[1]{\setBold \mathds #1 \unsetBold}
 % \newcommand{\bmathscr}[1]{\setBold \mathscr #1 \unsetBold}
@@ -55,30 +56,63 @@
 \usepackage[sorting=none]{biblatex}
 \addbibresource{schuller_rigged_hilbert_spaces.bib}
 \usepackage{hyperref}
-\hypersetup{linktoc=all, citecolor=red, pdfencoding=auto, psdextra, colorlinks=true, linkcolor=red, breaklinks=true, urlcolor=blue, pdftitle={Schuller – Rigged Hilbert Spaces}, bookmarksopen=true, pdfauthor={Apoorv Potnis}, pdfsubject={Rigged Hilbert Spaces – Quantum Mechanics}, unicode=true, pdftoolbar=true, pdfmenubar=true, pdfstartview={FitH}, pdfkeywords={Frederic Schuller, Rigged Hilbert Spaces, Quantum Mechanics, Mathematical Physics, Lecture Notes, Bras, Kets}}
-% \hypersetup{linktoc=all, citecolor=black, pdfencoding=auto, psdextra, colorlinks=true, linkcolor=black, breaklinks=true, urlcolor=black, pdftitle={Schuller – Rigged Hilbert Spaces}, bookmarksopen=true, pdfauthor={Apoorv Potnis}, pdfsubject={Rigged Hilbert Spaces – Quantum Mechanics}, unicode=true, pdftoolbar=true, pdfmenubar=true, pdfstartview={FitH}, pdfkeywords={Frederic Schuller, Rigged Hilbert Spaces, Quantum Mechanics, Mathematical Physics, Lecture Notes, Bras, Kets}}
+\hypersetup{linktoc=all, citecolor=red, pdfencoding=auto, psdextra, colorlinks=true, linkcolor=red, breaklinks=true, urlcolor=blue, pdftitle={Schuller – Rigged Hilbert Spaces}, bookmarksopen=true, pdfauthor={Apoorv Potnis}, pdfsubject={Rigged Hilbert Spaces – Quantum Mechanics}, unicode=true, pdftoolbar=true, pdfmenubar=true, pdfstartview={FitH}, pdfkeywords={Frederic Schuller, Rigged Hilbert Spaces, Quantum Mechanics, Mathematical Physics, Lecture Notes, Bras, Kets, Schwartz Space, Tempered Distributions, Distributions, Gelfand Triple, Generalized Eigenvalues}}
+% \hypersetup{linktoc=all, citecolor=black, pdfencoding=auto, psdextra, colorlinks=true, linkcolor=black, breaklinks=true, urlcolor=black, , bookmarksopen=true, pdfauthor={Apoorv Potnis}, pdfsubject={Rigged Hilbert Spaces – Quantum Mechanics}, unicode=true, pdftoolbar=true, pdfmenubar=true, pdfstartview={FitH}, }
 \usepackage{cleveref, xurl, bookmark}
 
+% % \newcommand{\ltwo}{\mathup{L\kern-0.5pt^2}}
+% \newcommand{\position}{\mathup{Q}}
+% \newcommand{\momentum}{\mathup{P}}
+% \newcommand{\rthree}{\mathbb{R}^3}
+% \newcommand{\rr}{\mathbb{R}}
+% \newcommand{\cc}{\mathbb{C}}
+% \newcommand{\nn}{\mathbb{N}_0}
+% \newcommand{\dirac}{\symup{\delta}}
+% % \newcommand{\hilbert}{\itcal{ℋ}\kern-0.7pt}
+% \newcommand{\hilbert}{\mathcal{H}}
+% \newcommand{\ltwor}{\ltwo(\rr)}
+% % \newcommand{\poly}{\itcal{𝒫}\kern-0.5pt}
+% \newcommand{\poly}{𝒫}
+% \newcommand{\schwartz}{\kern0.5pt\itcal{𝒮}\kern-2pt}
+% % \newcommand{\schwartz}{\mathcal{S}}
+% \newcommand{\schwartzr}{\schwartz(\rr)}
+% \newcommand{\dist}{\itcal{\schwartz^\times}\kern-0.5pt}
+% % \newcommand{\dist}{\schwartz^\times}
+% \newcommand{\distr}{\dist(\rr)}
+% \newcommand{\distar}{\schwartz^{\kern-0.1pt*}(\rr)}
+% \newcommand{\anti}{\overline{\distr}}
+% \renewcommand*{\hbar}{\mathrm{^^^^0127}}
+% \renewcommand{\i}{\mathrm{i}}
+% \newcommand{\e}{\mathrm{e}}
+% \newcommand{\cinfinity}{\mathrm{C}^\infty}
+% \newcommand{\family}{\mathcal{F}}
+% \newcommand{\lift}{\hat{D}}
+% \newcommand{\domain}{\mathcal{D}}
+% \newcommand{\identity}{\mathrm{id}}
+% \newcommand{\w}{w\kern-1pt}
+% \DeclareMathOperator{\spec}{spec}
+% \newcommand{\resolvent}{\mathup{\rho}}
+
 \newcommand{\ltwo}{\mathup{L\kern-0.5pt^2}}
-\newcommand{\position}{\mathup{Q}}
-\newcommand{\momentum}{\mathup{P}}
+\newcommand{\position}{Q}
+\newcommand{\momentum}{P}
 \newcommand{\rthree}{\mathbb{R}^3}
 \newcommand{\rr}{\mathbb{R}}
 \newcommand{\cc}{\mathbb{C}}
 \newcommand{\nn}{\mathbb{N}_0}
-\newcommand{\dirac}{\symup{\delta}}
+\newcommand{\dirac}{\delta}
 % \newcommand{\hilbert}{\itcal{ℋ}\kern-0.7pt}
 \newcommand{\hilbert}{\mathcal{H}}
 \newcommand{\ltwor}{\ltwo(\rr)}
 % \newcommand{\poly}{\itcal{𝒫}\kern-0.5pt}
-\newcommand{\poly}{𝒫}
-\newcommand{\schwartz}{\kern0.5pt\itcal{𝒮}\kern-2pt}
+\newcommand{\poly}{\mathcal{P}}
+\newcommand{\schwartz}{\mathcal{S}}
 % \newcommand{\schwartz}{\mathcal{S}}
 \newcommand{\schwartzr}{\schwartz(\rr)}
-\newcommand{\dist}{\itcal{\schwartz^\times}\kern-0.5pt}
+\newcommand{\dist}{\schwartz^\times}
 % \newcommand{\dist}{\schwartz^\times}
 \newcommand{\distr}{\dist(\rr)}
-\newcommand{\distar}{\schwartz^{\kern-0.1pt*}(\rr)}
+\newcommand{\distar}{\schwartz^*(\rr)}
 \newcommand{\anti}{\overline{\distr}}
 \renewcommand*{\hbar}{\mathrm{^^^^0127}}
 \renewcommand{\i}{\mathrm{i}}
@@ -116,13 +150,17 @@
 \apptocmd{\sloppy}{\hbadness 10000\relax}{}{}
 \emergencystretch=1em
 
+\makeatletter
+\g@addto@macro\bfseries{\boldmath}
+\makeatother
+
 \begin{document}
 
 	\maketitle
 
 	These are lecture notes by Apoorv Potnis of the lecture `\selectlanguage{ngerman}Aufgetakelte Hilberträume\selectlanguage{english}' or `Rigged Hilbert Spaces', given by \textbf{Prof.\@ Frederic Paul Schuller}, as the eighth lecture in the course `\selectlanguage{ngerman}Theoretische Physik 2: Theoretische Quantenmechanik\selectlanguage{english}' in 2014 at the \selectlanguage{ngerman}Friedrich-Alexander-Universität Erlangen-Nürnberg\selectlanguage{english}. While the original lecture is in German, these notes are in English and have been prepared using YouTube's automatic subtitle translation tool. The lecture is available at \url{https://www.youtube.com/watch?v=FNJOyxOp3Ik&list=PLPO5pgr_frzTeqa_thbltYjyw8F9ehw7v&index=8} and at \url{https://www.fau.tv/clip/id/4301}.
 
-	\mathversion{bold}\tableofcontents\mathversion{regular}
+	\tableofcontents
 
 	\section{Introduction}
 
@@ -157,36 +195,36 @@
 
 	We shall construct two spaces, the space of Schwartz functions on the real line, denoted by $\schwartzr$ and the space of tempered distributions, denoted by $\distr$, such that
 	\[
-		\schwartzr \subset \ltwor \subset \distr.
+	\schwartzr \subset \ltwor \subset \distr.
 	\]
 	We shall define the position and momentum operators on $\schwartzr$ and see that these operators linearly map $\schwartzr$ to $\schwartzr$.
 	\begin{align*}
-	    \position &\colon \schwartzr \rightarrow \schwartzr,\\
+		\position &\colon \schwartzr \rightarrow \schwartzr,\\
 		\position &\colon f \mapsto \position f,
 	\end{align*}
 	with
 	\[
-		(\position f)(x) \coloneq x \cdot f(x)
+	(\position f)(x) \coloneq x \cdot f(x)
 	\]
 	and
 	\begin{align*}
-	    \momentum &\colon \schwartzr \rightarrow \schwartzr,\\
+		\momentum &\colon \schwartzr \rightarrow \schwartzr,\\
 		\momentum &\colon f \mapsto \momentum f,
 	\end{align*}
 	with
 	\[
-		(\momentum f)(x) \coloneq -\i\hbar f'(x).
+	(\momentum f)(x) \coloneq -\i\hbar f'(x).
 	\]
 
 	We shall then `lift' or extend these operators to the bigger space $\distr$, such that they linearly map $\distr$ to $\distr$, and it is in this space of tempered distributions that the eigenvalue equation shall be satisfied. Moreover, these distributions form an eigenbasis for the bigger space. For example, the Dirac delta \textit{distribution}, not function, mentioned earlier, belongs to this space.
 
 	While we construct these spaces for $\ltwor$ here, they can be constructed for more abstract Hilbert spaces as well. We thus `rig' the Hilbert space with two other spaces $\mathcal{S}$ and $\mathcal{S}^\times$:
 	\[
-		\mathcal{S} \subset \hilbert \subset \mathcal{S}^\times.
+	\mathcal{S} \subset \hilbert \subset \mathcal{S}^\times.
 	\]
 	The triple $(\mathcal{S}, \hilbert, \mathcal{S}^\times)$ is called as a \textit{Gelfand triple}, in the honour of the Russian mathematician Israel Moiseevich Gelfand.
 
-	\section{The Schwartz space and the space of tempered distributions}
+	\section{The Schwartz space and tempered distributions}
 
 	A seminorm $\norm{\cdot} \colon V \rightarrow \rr_{\geq 0}$ on a vector space $V$ over $\cc$ is a real-valued non-negative function such that $\norm{\lambda v} = \abs{\lambda} v$ and $\norm{v + w} \leq \norm{v} + \norm{w}$, for all $v,w \in V$ and $\lambda \in \cc$. A seminorm which vanishes only for $v=0$ is called a norm. A seminorm induces a topology $\tau$ on $V$ defined by open sets of the form $\{v\in V \mid \norm{v} < r\}$, where $r \in \rr_{\geq 0}$.
 
@@ -209,25 +247,25 @@
 
 	The space of \textit{tempered distributions} $\distr$ is defined as follows. Let
 	\[
-		\distar \coloneq \{\Phi \mid \Phi \colon \schwartzr \rightarrow \cc, \text{ $\Phi$ is linear}\}
+	\distar \coloneq \{\Phi \mid \Phi \colon \schwartzr \rightarrow \cc, \text{ $\Phi$ is linear}\}
 	\] denote the algebraic dual of $\schwartzr$.  We say that a function $g \colon \rr \rightarrow \cc$ is polynomially bounded if there exists a polynomial $p \colon \rr \rightarrow \cc$ such that $\abs{g(x)} \leq \abs{p(x)}$, for all $x\in \rr$. Let $\family$ denote a set of continuous, polynomially bounded functions from $\rr$ to $\cc$. It is not required that elements of $\family$ be linear. We say that a $\Phi \in \distar$ is a tempered distribution if there exists such a family $\family = \{\Phi_m \mid m \in \nn\}$, such that for each $f\in \schwartzr$,
 	\[
-		\Phi[f] = \int_{\rr} \der x \sum_{m \in \nn} \Phi_m (x) \cdot f^{(m)} (x).
+	\Phi[f] = \int_{\rr} \der x \sum_{m \in \nn} \Phi_m (x) \cdot f^{(m)} (x).
 	\]
 	It is customary to use the notation $\Phi[f]$ to use the denote that $\Phi$ acts on $f$. Thus, in order to define a tempered distribution, one only needs to define a family of  continuous, polynomially bounded functions from the reals to complex numbers. It is in general useful to search for solutions in the space of distributions in the study of linear differential equations.
 
-% 	\[
-% 	\distr \coloneq \left\{\Phi \mathrel{\bigg|} \Phi \in \distar, \forall f \in \schwartzr : \Phi[f] = \int_{\rr} \der x \sum_{m \in \nn} \Phi_m (x) \cdot f^{(m)} (x) \right\},
-% 	\]
-% 	where $\distar$ denotes the algebraic(?) dual of $\schwartz(\rr)$ and $\Phi_m \colon \rr \rightarrow \cc$ denotes a (piecewise(?)?) continuous, polynomially bounded function for each $m \in \nn$. It is not required that $\Phi_m$ be linear.
+	% 	\[
+	% 	\distr \coloneq \left\{\Phi \mathrel{\bigg|} \Phi \in \distar, \forall f \in \schwartzr : \Phi[f] = \int_{\rr} \der x \sum_{m \in \nn} \Phi_m (x) \cdot f^{(m)} (x) \right\},
+	% 	\]
+	% 	where $\distar$ denotes the algebraic(?) dual of $\schwartz(\rr)$ and $\Phi_m \colon \rr \rightarrow \cc$ denotes a (piecewise(?)?) continuous, polynomially bounded function for each $m \in \nn$. It is not required that $\Phi_m$ be linear.
 
 	We look at the famous example of the Dirac distribution $\dirac_\lambda \in \distr$. It is defined by the following family of functions. $(\dirac_\lambda)_m \colon \rr \rightarrow \cc$ for all $m \in \nn$.
 	\[
-		(\dirac_\lambda)_2 (x) =
-		\begin{cases}
-			x - \lambda & \text{if $x \geq \lambda$}\\
-			0 & \text{if $x < \lambda$}
-		\end{cases}
+	(\dirac_\lambda)_2 (x) =
+	\begin{cases}
+		x - \lambda & \text{if $x \geq \lambda$}\\
+		0 & \text{if $x < \lambda$}
+	\end{cases}
 	\]
 	and $(\dirac_\lambda)_m = 0$ for all $m \neq 2$ and $\lambda \in \rr$. We now show that $\dirac_\lambda[f] = f(\lambda)$ for all $f \in \schwartzr$, as expected. We see that
 	\begin{align*}
@@ -241,25 +279,26 @@
 	\end{align*}
 	$f$ and its all derivatives vanish at $+\infty$ since $f \in \schwartzr$. Thus, we are left with
 	\begin{align*}
-	    \dirac_\lambda [f] &= \lambda \cdot f^{(1)}(\lambda) - f(\lambda) - \lambda \cdot f^{(1)}(\lambda),\\
+		\dirac_\lambda [f] &= \lambda \cdot f^{(1)}(\lambda) - f(\lambda) - \lambda \cdot f^{(1)}(\lambda),\\
 		\dirac_\lambda [f] &= f(\lambda).
 	\end{align*}
 
 	We now look at plane waves $\mathrm{E}_k \in \distr$ of wavenumber $k \in \nn$. These are very important for quantum mechanics. $\mathrm{E}_k$ is defined by \[(\mathrm{E}_k)_0 (x) = \e^{\i kx}\] and $(\mathrm{E}_k)_m = 0$ for all $m \neq 0$. Note that $\mathrm{E}_k \notin \ltwor \supset \schwartzr$.
 
-	\mathversion{bold}
-	\section{Embedding of \texorpdfstring{$\mathrm{L}^2 (\mathbb{R})$}{L²(ℝ)} in \texorpdfstring{\slantbox[-0.4]{$\mathcal{S}$}\kern-1.9pt$^\times (\mathbb{R})$}{𝒮⁺(ℝ)}}
-% 	\addcontentsline{toc}{section}{Embedding of \texorpdfstring{$\mathrm{L}^2 (\mathbb{R})$}{L²(ℝ)} in \texorpdfstring{$\mathcal{S}^\times (\mathbb{R})$}{𝒮⁺(ℝ)}}
-	\mathversion{regular}
+	% 	\mathversion{bold}
+	% 	\section{Embedding of \texorpdfstring{$\mathrm{L}^2 (\mathbb{R})$}{L²(ℝ)} in \texorpdfstring{\slantbox[-0.4]{$\mathcal{S}$}\kern-1.9pt$^\times (\mathbb{R})$}{𝒮⁺(ℝ)}}
+	% 	\addcontentsline{toc}{section}{Embedding of \texorpdfstring{$\mathrm{L}^2 (\mathbb{R})$}{L²(ℝ)} in \texorpdfstring{$\mathcal{S}^\times (\mathbb{R})$}{𝒮⁺(ℝ)}}
+	% 	\mathversion{regular}
+	\section{Embedding of \texorpdfstring{\(\ltwor\)}{L²(ℝ)} in \texorpdfstring{\(\distr\)}{𝒮⁺(ℝ)}}
 
 	In the literature, a tempered distribution is defined as a continuous linear functional on the Schwartz space. The topology on $\schwartzr$ is the one induced by seminorms. The equivalence of this definition and Prof.\@ Schuller's definition is asked as a problem in the book of Reed and Simon~\cite[prob.~24, chp.~5, p.~176]{Reed}.
 
 	It is clear why $\schwartzr \subset \ltwor$. The elements of $\ltwor$ are functions from $\rr$ to $\cc$, while the elements of $\distr$ are functions from $\schwartzr$ to $\cc$. Thus, it cannot be that $\ltwor \subset \distr$, strictly speaking. However, we can embed $\ltwor$ in $\distr$, just the way we embed $\rr$ in $\cc$.
-% 	In order to do that, we present the following result from the book of Reed and Simon~\cite[Theorem~V.10 (Regularity theorem for distributions), ch.~V, p.~139]{Reed}.
-% 	Let $\Phi \in \distr$. Then for all $f\in \schwartzr$, % $\Phi$ is the weak $m$-derivative of some polyomially bounded continuous function $g \colon \rr \rightarrow \cc$.
-% 	\[
-% 		\Phi[f] =  \int_{\rr} \der x \,\, (-1)^m g(x) \cdot f^{(m)} (x).
-% 	\]
+	% 	In order to do that, we present the following result from the book of Reed and Simon~\cite[Theorem~V.10 (Regularity theorem for distributions), ch.~V, p.~139]{Reed}.
+	% 	Let $\Phi \in \distr$. Then for all $f\in \schwartzr$, % $\Phi$ is the weak $m$-derivative of some polyomially bounded continuous function $g \colon \rr \rightarrow \cc$.
+	% 	\[
+	% 		\Phi[f] =  \int_{\rr} \der x \,\, (-1)^m g(x) \cdot f^{(m)} (x).
+	% 	\]
 	We define the embedding
 	\begin{align*}
 		\eta &\colon \ltwor \rightarrow \distr,\\
@@ -267,45 +306,46 @@
 	\end{align*}
 	where
 	\[
-		\Phi_\phi [f] \coloneq \int_{\rr} \phi(x) \cdot f(x) \der x.
+	\Phi_\phi [f] \coloneq \int_{\rr} \phi(x) \cdot f(x) \der x.
 	\]
-% 	Thus,
-% 	\[
-% 		(\Phi_\phi)_0(x) = \phi(x)
-% 	\]
-% 	and $(\Phi_\phi)_m(x) = 0$ for all other $m \in \nn$.
+	% 	Thus,
+	% 	\[
+	% 		(\Phi_\phi)_0(x) = \phi(x)
+	% 	\]
+	% 	and $(\Phi_\phi)_m(x) = 0$ for all other $m \in \nn$.
 	It can be shown that the above embedding function defines each $\Phi_\phi[f]$ to be a continuous linear functional for all $\phi \in \ltwor$ and $f \in \schwartzr$. Thus, $\Phi_\phi$ is a tempered distribution. This enables us to write $\ltwor \xhookrightarrow{} \distr$, and by abuse of notation, $\eta (\ltwor) \subset \distr$ can be written as $\ltwor \subset \distr$.
 
-% 	\bigskip
-%
-% 	\noindent\textbf{Note.}
-%
-% 	Prof.\@ Schuller admits that there is possibly some error in the provided definition of tempered distributions. In the lecture, he initially requires the $\Phi_m$'s to be continuous. But we see here that $\phi$ is only guaranteed only to be square integrable; it may not be continuous. He then conjectures that perhaps we need only piecewise continuity for the $\Phi_m$'s. He says that he shall fix this in the next lecture, but I (Apoorv) did not find anything regarding this in the next, ninth lecture.
-%
-% 	I was also not able to find the definition of tempered distributions that Prof.\@ Schuller provides in any standard references. All of the references I checked define a \textbf{tempered distribution as a continuous linear functional on the Schwartz space}, i.e. $\distr$ as simply the topological dual of $\schwartzr$. Prof.\@ Schuller defines $\schwartzr$ as a subset of the algebraic dual $\distar$, characterised by the specific form of $\Phi_m [f]$. He does not put any topology explicitly on $\schwartz$, but he defines a seminorm on $\schwartz$. The topology on $\schwartzr$ can be assumed to be the topology induced by these seminorms. It might be useful to look at Theorem V.10 and p.~145 of the first volume of book of Reed and Simon~\cite{Reed}, to this effect.
+	% 	\bigskip
+	%
+	% 	\noindent\textbf{Note.}
+	%
+	% 	Prof.\@ Schuller admits that there is possibly some error in the provided definition of tempered distributions. In the lecture, he initially requires the $\Phi_m$'s to be continuous. But we see here that $\phi$ is only guaranteed only to be square integrable; it may not be continuous. He then conjectures that perhaps we need only piecewise continuity for the $\Phi_m$'s. He says that he shall fix this in the next lecture, but I (Apoorv) did not find anything regarding this in the next, ninth lecture.
+	%
+	% 	I was also not able to find the definition of tempered distributions that Prof.\@ Schuller provides in any standard references. All of the references I checked define a \textbf{tempered distribution as a continuous linear functional on the Schwartz space}, i.e. $\distr$ as simply the topological dual of $\schwartzr$. Prof.\@ Schuller defines $\schwartzr$ as a subset of the algebraic dual $\distar$, characterised by the specific form of $\Phi_m [f]$. He does not put any topology explicitly on $\schwartz$, but he defines a seminorm on $\schwartz$. The topology on $\schwartzr$ can be assumed to be the topology induced by these seminorms. It might be useful to look at Theorem V.10 and p.~145 of the first volume of book of Reed and Simon~\cite{Reed}, to this effect.
 
-	\mathversion{bold}
-	\section{Lifting differential operators from \texorpdfstring{\slantbox[-0.4]{$\mathcal{S}$}\kern-3pt$(\mathbb{R})$}{𝒮(ℝ)}}
-	\mathversion{regular}
+	% 	\mathversion{bold}
+	% 	\section{Lifting differential operators from \texorpdfstring{\slantbox[-0.4]{$\mathcal{S}$}\kern-3pt$(\mathbb{R})$}{𝒮(ℝ)}}
+	% 	\mathversion{regular}
+	\section{Lifting differential operators from \texorpdfstring{\(\schwartzr\)}{𝒮(ℝ)}}
 
 	Let $D$ be defined as follows.
 	\begin{align*}
-	    D &\colon \schwartzr \rightarrow \schwartzr,\\
+		D &\colon \schwartzr \rightarrow \schwartzr,\\
 		D &\colon f \mapsto Df,
 	\end{align*}
 	where
 	\[
-		(Df)(x) \coloneq \sum_{m \in M} D_m(x) \cdot f^{(m)} (x).
+	(Df)(x) \coloneq \sum_{m \in M} D_m(x) \cdot f^{(m)} (x).
 	\]
 	Here, $M$ is a finite subset of $\nn$, and $D_m$ is a complex polynomial, i.e.\@ $D_m \in \cc[x]$. Such a $D$ is called a differential operator. By the defining properties of the Schwartz space, it can be seen that the operator is well-defined: the range is $\distr$. $D$ has this nice property of mapping into the space itself.
 
 	We immediately see that the position and momentum operators are differential operators.
 	\[
-		(\position f)(x) \coloneq x \cdot f(x),
+	(\position f)(x) \coloneq x \cdot f(x),
 	\]
 	with $\position_0(x) = x$ and $\position_m(x) = 0$ for all other $m \in \nn$.
 	\[
-		(\momentum f)(x) \coloneq -\i\hbar f'(x),
+	(\momentum f)(x) \coloneq -\i\hbar f'(x),
 	\]
 	with $\momentum(x) = -\i\hbar$ and $\momentum(x) = 0$ for all other $m \in \nn$.
 
@@ -316,7 +356,7 @@
 	\end{align*}
 	by
 	\[
-		(\lift\Phi)[f] \coloneq \Phi\left[\sum_{m\in M} (-1)^m (D_m f)^{(m)} (x)\right],
+	(\lift\Phi)[f] \coloneq \Phi\left[\sum_{m\in M} (-1)^m (D_m f)^{(m)} (x)\right],
 	\]
 	where $f \in \schwartzr$ and $M$ is a finite subset of $\nn$.\footnote{The lift formula as provided in the lecture contains a slight mistake. The correct formula provided here as been taken from eq.~(V.5) of ~\cite[p.~149]{Reed}.} Weak derivatives are defined using the integration by parts formula and the $(-1)^m$ factor is a consequence of this.
 
@@ -328,7 +368,7 @@
 	\]
 	We say that $\lambda \in \cc$ is a \textit{regular point} if and only if
 	\[
-		\w_A(\lambda) = \overline{\w_A(\lambda)} = \hilbert.
+	\w_A(\lambda) = \overline{\w_A(\lambda)} = \hilbert.
 	\]
 	Here, $\overline{\w_A(\lambda)}$ denotes the topological closure of $\w_A(\lambda)$. The set of regular points is called a \textit{resolvent set}. The complement of the resolvent set is known as the \textit{spectrum} of the operator, denoted as $\spec(A)$. $\spec(A) = \cc \setminus \resolvent(A)$.
 
@@ -336,47 +376,47 @@
 	\begin{enumerate}
 		\item The \textit{pure point spectrum} of $A$, $\spec_\text{pp}(A)$, is defined as
 		\[
-			\spec_\text{pp}(A) \coloneq \{\lambda \in \cc \mid \w_A(A - \lambda \cdot \identity) = \overline{\w_A(A - \lambda \cdot \identity)} \neq \hilbert\}.
+		\spec_\text{pp}(A) \coloneq \{\lambda \in \cc \mid \w_A(A - \lambda \cdot \identity) = \overline{\w_A(A - \lambda \cdot \identity)} \neq \hilbert\}.
 		\]
 		\item The \textit{point embedded in continuum spectrum} of $A$, $\spec_\text{pec}(A)$, is defined as
 		\[
-			\spec_\text{pec}(A) \coloneq \{\lambda \in \cc \mid \w_A(A - \lambda \cdot \identity) \neq \overline{\w_A(A - \lambda \cdot \identity)} \neq \hilbert\}.
+		\spec_\text{pec}(A) \coloneq \{\lambda \in \cc \mid \w_A(A - \lambda \cdot \identity) \neq \overline{\w_A(A - \lambda \cdot \identity)} \neq \hilbert\}.
 		\]
 		\item The \textit{purely continuous spectrum} of $A$, $\spec_\text{pc}(A)$, is defined as
 		\[
-			\spec_\text{pc}(A) \coloneq \{\lambda \in \cc \mid \w_A(A - \lambda \cdot \identity) \neq \overline{\w_A(A - \lambda \cdot \identity)} = \hilbert\}.
+		\spec_\text{pc}(A) \coloneq \{\lambda \in \cc \mid \w_A(A - \lambda \cdot \identity) \neq \overline{\w_A(A - \lambda \cdot \identity)} = \hilbert\}.
 		\]
 	\end{enumerate}
 	These form a partition of $\spec(A)$, i.e. they are pairwise disjoint and their union is $\spec(A)$.
 
 	We further define the \textit{point spectrum} of $A$, $\spec_\mathrm{p}(A)$, to be the union of the pure point and the point embedded in continuum spectra.
 	\[
-		\spec_\mathrm{p}(A) =  \spec_\text{pp}(A) \cup \spec_\text{pec}(A) = \{\lambda \in \cc \mid\overline{\w_A(A - \lambda \cdot \identity)} \neq \hilbert\}.
+	\spec_\mathrm{p}(A) =  \spec_\text{pp}(A) \cup \spec_\text{pec}(A) = \{\lambda \in \cc \mid\overline{\w_A(A - \lambda \cdot \identity)} \neq \hilbert\}.
 	\]
 	We similarly define the \textit{continuous spectrum} of $A$, $\spec_\text{c} (A)$, to be the union of the continuous and the point embedded in continuum spectra.
 	\[
-		\spec_\mathrm{c}(A) =  \spec_\text{pc}(A) \cup \spec_\text{pec}(A) = \{\lambda \in \cc \mid \w_A(A - \lambda \cdot \identity) \neq \overline{\w_A(A - \lambda \cdot \identity)}\}.
+	\spec_\mathrm{c}(A) =  \spec_\text{pc}(A) \cup \spec_\text{pec}(A) = \{\lambda \in \cc \mid \w_A(A - \lambda \cdot \identity) \neq \overline{\w_A(A - \lambda \cdot \identity)}\}.
 	\]
 	Since $\spec_\text{pec}(A)$ may not be empty, the point and continuous spectra may not in general form a partition of the spectrum. We note an important result that the spectrum of a self-adjoint operator on a Hilbert space is always real, i.e.
 	\[
-		\spec(A) \subset \rr.
+	\spec(A) \subset \rr.
 	\]
 
 	We now generalise the notion of an eigenvector. Let $A \colon \schwartzr \rightarrow \schwartzr$ be an essentially self-adjoint operator. We lift $A$ to $\distr$ to get $\hat{A} \colon \distr \rightarrow \distr$. The equation
 	\[
-		\hat{A} \Phi = \lambda \Phi
+	\hat{A} \Phi = \lambda \Phi
 	\]
 	is known as a \textit{generalised eigenvalue} equation with the \textit{generalised eigenvector} or \textit{eigendistribution} $\Phi \in \distr \setminus \{0\}$ and $\lambda \in \cc$.
 	The spectrum of $A$ is then defined as the set of solutions of the above equation.
 
 	As an example, we request the reader to see that for $\lambda \in \rr$,
 	\[
-		\hat{\position}\kern1pt \dirac_\lambda = \lambda \cdot \dirac_\lambda,
+	\hat{\position}\kern1pt \dirac_\lambda = \lambda \cdot \dirac_\lambda,
 	\]
 	with $\spec(\position) = \rr$.
 	It can also be shown that $\spec(\momentum) = \rr$, with
 	\[
-		\hat{\momentum}\kern0.8pt\mathrm{E}_k = \hbar k \cdot \mathrm{E}_k.
+	\hat{\momentum}\kern0.8pt\mathrm{E}_k = \hbar k \cdot \mathrm{E}_k.
 	\]
 	We note a monumental result that a self-adjoint operator on our rigged Hilbert space, $\schwartzr \subset \ltwor \subset \distr$, has a complete system of generalised eigenvectors with real eigenvalues. The same holds true for unitary operators as well, with complex eigenvalues of unit modulus~\cite{gelfand, spectralthm, gould}.
 
@@ -391,17 +431,17 @@
 	\end{align*}
 	is said to be \textit{anti-linear} if
 	\[
-		\Psi(f + g) = \Psi(f) + \Psi(g),
+	\Psi(f + g) = \Psi(f) + \Psi(g),
 	\]
 	and
 	\[
-	    \Psi(\lambda f) = \overline{\lambda}\Psi(f)
+	\Psi(\lambda f) = \overline{\lambda}\Psi(f)
 	\]
 	for all $f, g \in \schwartzr$ and $\lambda \in \cc$, where $\overline{\lambda}$ denotes the complex conjugate of $\lambda$.
 
 	We denote the space of all continuous anti-linear functionals on $\schwartzr$ by $\anti$. If $\Phi \in \distr$, then we define the vector space isomorphism
 	\begin{align*}
-	    \Lambda &\colon \distr \rightarrow \anti,\\
+		\Lambda &\colon \distr \rightarrow \anti,\\
 		\Lambda &\colon \Phi \mapsto \Lambda(\Phi),
 	\end{align*}
 	by
@@ -416,41 +456,41 @@
 	\end{align*}
 	where
 	\[
-		\Psi_\phi [f] \coloneq \int_{\rr} \phi(x) \cdot \overline{f(x)} \der x,
+	\Psi_\phi [f] \coloneq \int_{\rr} \phi(x) \cdot \overline{f(x)} \der x,
 	\]
 	where $\overline{f(x)}$ denotes the complex conjugate of $f(x)$.
 	It can be shown that the above embedding function defines each $\Psi_\phi[f]$ to be a continuous anti-linear functional for all $\phi \in \ltwor$ and $f \in \schwartzr$. Just like the case for tempered distributions, we have $\ltwor \xhookrightarrow{} \anti$, and by abuse of notation, $\omega(\ltwor) \subset \anti$ can be written as $\ltwor \subset \anti$.
 
 	Elements of $\anti$ are identified with \textit{kets} and elements of $\distr$ are identified with \textit{bras} in quantum mechanics. Thus, we can call $\anti$ the \textit{ket-space} and $\distr$ the \textit{bra-space}. Since $\Lambda$ is an isomorphism, there is a one-to-one correspondence between kets and bras. It should be noted that some authors such as Bowers~\cite[chp.~5]{Bowers} call the images $\eta(\ltwor)$ and $\omega(\ltwor)$ of the embeddings $\ltwor \xhookrightarrow{} \distr$ and $\ltwor \xhookrightarrow{} \anti$ as the bra-space and the ket-space respectively. We recommend the reader consult chp.~5 in the book of Bowers~\cite{Bowers} for a discussion of the Dirac calculus in a mathematically rigorous fashion.
 
-% 	\section{Properties of the Dirac delta distribution}
-%
-% 	We derive a property of the Dirac delta distribution which is often written as follows.
-% 	\[
-% 	    x \cdot \delta_\lambda (x) = 0.
-% 	\]
-% 	The above property, when translated into our notation reads as follows.
-% 	Let $\identity \in \cc[x]$ be defined as $\identity \colon x \mapsto x$ and $A \colon \schwartzr \rightarrow \schwartzr$ be the differential operator defined as follows.
-% 	\[
-% 		(A f)(x) \coloneq (\identity \cdot f) (x).
-% 	\]
-% 	Then the lift of $A$, $\hat{A} \colon \distr \rightarrow \distr$, using the formula for the lift, is obtained as
-% 	\[
-% 		(\hat{A} \dirac_\lambda)[f] = \dirac_\lambda\left[(\identity \cdot f)\right].
-% 	\]
-% 	The above identity then is expressed as
-% 	\[
-% 	    (\hat{A} \dirac_\lambda)[f] = \dirac_\lambda[(\identity \cdot f)] = 0.
-% 	\]
-% 	for all $f \in \schwartzr$. We prove it now.
-% 	\begin{align*}
-% 		\dirac_\lambda[(\identity \cdot f)] &= \int_{(\lambda, +\infty)} (\dirac_\lambda)_2 ((\identity \cdot f)^{(2)})\\
-% % 	\end{align*}
-% % 	Here, we have done a slight abuse of notation to and used the symbol $x$ for $\identity$. Thus,
-% % 	\begin{align*}
-% 		\dirac_\lambda[(\identity \cdot f)] &=  \int_{(\lambda, +\infty)} (\dirac_\lambda)_2 \left[(\identity)^{(1)} \cdot f + \identity \cdot f^{(1)}\right]^{(1)}\\
-% 		\dirac_\lambda[(\identity \cdot f)] &=  \int_{(\lambda, +\infty)} (\dirac_\lambda)_2 \left[(\identity)^{(1)} \cdot f + \identity \cdot f^{(1)}\right]^{(1)}\\
-% 	\end{align*}
+	% 	\section{Properties of the Dirac delta distribution}
+	%
+	% 	We derive a property of the Dirac delta distribution which is often written as follows.
+	% 	\[
+	% 	    x \cdot \delta_\lambda (x) = 0.
+	% 	\]
+	% 	The above property, when translated into our notation reads as follows.
+	% 	Let $\identity \in \cc[x]$ be defined as $\identity \colon x \mapsto x$ and $A \colon \schwartzr \rightarrow \schwartzr$ be the differential operator defined as follows.
+	% 	\[
+	% 		(A f)(x) \coloneq (\identity \cdot f) (x).
+	% 	\]
+	% 	Then the lift of $A$, $\hat{A} \colon \distr \rightarrow \distr$, using the formula for the lift, is obtained as
+	% 	\[
+	% 		(\hat{A} \dirac_\lambda)[f] = \dirac_\lambda\left[(\identity \cdot f)\right].
+	% 	\]
+	% 	The above identity then is expressed as
+	% 	\[
+	% 	    (\hat{A} \dirac_\lambda)[f] = \dirac_\lambda[(\identity \cdot f)] = 0.
+	% 	\]
+	% 	for all $f \in \schwartzr$. We prove it now.
+	% 	\begin{align*}
+	% 		\dirac_\lambda[(\identity \cdot f)] &= \int_{(\lambda, +\infty)} (\dirac_\lambda)_2 ((\identity \cdot f)^{(2)})\\
+	% % 	\end{align*}
+	% % 	Here, we have done a slight abuse of notation to and used the symbol $x$ for $\identity$. Thus,
+	% % 	\begin{align*}
+	% 		\dirac_\lambda[(\identity \cdot f)] &=  \int_{(\lambda, +\infty)} (\dirac_\lambda)_2 \left[(\identity)^{(1)} \cdot f + \identity \cdot f^{(1)}\right]^{(1)}\\
+	% 		\dirac_\lambda[(\identity \cdot f)] &=  \int_{(\lambda, +\infty)} (\dirac_\lambda)_2 \left[(\identity)^{(1)} \cdot f + \identity \cdot f^{(1)}\right]^{(1)}\\
+	% 	\end{align*}
 
 
 
