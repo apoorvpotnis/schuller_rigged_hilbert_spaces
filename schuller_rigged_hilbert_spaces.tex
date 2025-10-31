@@ -7,7 +7,7 @@
 % You can run the following command in a terminal
 % lualatex schuller_rigged_hilbert_spaces.tex && biber schuller_rigged_hilbert_spaces && lualatex schuller_rigged_hilbert_spaces.tex && schuller_rigged_hilbert_spaces.tex
 
-% Alternatively, you can run latexmk with the -pdflua option, or use arara as well.
+% Alternatively, you can run latexmk with the -pdflua option, or use arara.
 
 % arara: lualatex: {shell: yes}
 % arara: biber
@@ -123,6 +123,30 @@ SlantedFont=NewCMSans10-Oblique.otf,%
 BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
 ]{NewCMSans10-Regular.otf}
 
+\AddToHook{bfseries}{\boldmath} % Correct macro by egreg 
+
+% code copied from here https://tex.stackexchange.com/a/82221/128462
+
+\everymath=\expandafter{%
+\the\everymath%
+\Umathsubshiftdown\textstyle=1.9pt\Umathsubshiftdrop\textstyle=0.5pt}
+\everydisplay=\expandafter{%
+\the\everydisplay%
+\Umathsubshiftdown\displaystyle=1.9pt\Umathsubshiftdrop\displaystyle=0.5pt}
+
+% code copied from here https://tex.stackexchange.com/a/754196/128462
+
+\RenewDocumentCommand{\DeclareMathOperator}{mm}{%
+  \NewDocumentCommand{#1}{}{%
+    \operatorname{\vphantom{#2}}\!%
+    \operatorname{\smash[b]{#2}}%
+  }%
+}
+
+\DeclareMathAlphabet\cmmathcal{OMS}{cmsy}{m}{n}
+\DeclareMathAlphabet\cmmathbfcal{OMS}{cmsy}{b}{n}
+\renewcommand{\symcal}{\cmmathcal}
+\renewcommand{\symbfcal}{\cmmathbfcal}
 
 \usepackage{amsthm}
 \theoremstyle{definition}
@@ -243,7 +267,7 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
         journal = {Journal of the London Mathematical Society},
         volume = {s1-43},
         number = {1},
-        pages = {745–754},
+        pages = {745--754},
         doi = {https://doi.org/10.1112/jlms/s1-43.1.745},
         year = {1968}
     }
@@ -269,8 +293,32 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
 
 \usepackage[sorting=none]{biblatex}
 \addbibresource{schuller_rigged_hilbert_spaces.bib}
+\usepackage{embedall}
+\embedfile[desc = bibliography source file]{schuller_rigged_hilbert_spaces.bib}
+
+\usepackage{mleftright}
+
+\usepackage{luatex85}
+\newsavebox{\foobox}
+\newcommand{\slantbox}[2][.5]
+{%
+    \mbox
+    {%
+        \sbox{\foobox}{#2}%
+        \hskip\wd\foobox
+        \pdfsave
+        \pdfsetmatrix{1 0 #1 1}%
+        \llap{\usebox{\foobox}}%
+        \pdfrestore
+    }%
+}
+
+\usepackage{etoolbox}
+\apptocmd{\sloppy}{\hbadness 10000\relax}{}{}
+\emergencystretch=1em
+
 \usepackage{hyperref}
-\hypersetup{linktoc=all, citecolor=red, pdfencoding=auto, psdextra, colorlinks=true, linkcolor=red, breaklinks=true, urlcolor=blue, pdftitle={Schuller – Rigged Hilbert Spaces}, bookmarksopen=true, pdfauthor={Apoorv Potnis}, pdfsubject={Rigged Hilbert Spaces – Quantum Mechanics}, unicode=true, pdftoolbar=true, pdfmenubar=true, pdfstartview={FitH}, pdfkeywords={Frederic Schuller, Rigged Hilbert Spaces, Quantum Mechanics, Mathematical Physics, Lecture Notes, Bras, Kets, Schwartz Space, Tempered Distributions, Distributions, Gelfand Triple, Generalized Eigenvalues, Dirac Calculus, Nuclear Spectral Theorem}}
+\hypersetup{linktoc=all, citecolor=red, pdfencoding=auto, psdextra, colorlinks=true, linkcolor=red, breaklinks=true, urlcolor=blue, pdftitle={Schuller -- Rigged Hilbert Spaces}, bookmarksopen=true, pdfauthor={Apoorv Potnis}, pdfsubject={Rigged Hilbert Spaces -- Quantum Mechanics}, unicode=true, pdftoolbar=true, pdfmenubar=true, pdfstartview={FitH}, pdfkeywords={Frederic Schuller, Rigged Hilbert Spaces, Quantum Mechanics, Mathematical Physics, Lecture Notes, Bras, Kets, Schwartz Space, Tempered Distributions, Distributions, Gelfand Triple, Generalized Eigenvalues, Dirac Calculus, Nuclear Spectral Theorem}}
 \usepackage{cleveref, xurl, bookmark}
 
 \newcommand{\ltwo}{\symup{L\kern-0.5pt^2}}
@@ -296,42 +344,15 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
 \newcommand{\cinfinity}{\symrm{C}^\infty}
 \newcommand{\family}{F}
 \newcommand{\lift}{\hat{D}}
-\newcommand{\domain}{\symcal{D}}
+\newcommand{\domain}{\symcal{D}\kern-2pt}
 \newcommand{\identity}{\symrm{id}}
-\newcommand{\w}{w\kern-1pt}
+\newcommand{\w}{w\kern-1.5pt}
 \DeclareMathOperator{\spec}{spec}
 \newcommand{\resolvent}{\symup{\rho}}
 
 \DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
 \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
 \newcommand{\der}{\operatorname{d\!}{}}
-\usepackage{mleftright}
-
-\usepackage{luatex85}
-\newsavebox{\foobox}
-\newcommand{\slantbox}[2][.5]
-{%
-    \mbox
-    {%
-        \sbox{\foobox}{#2}%
-        \hskip\wd\foobox
-        \pdfsave
-        \pdfsetmatrix{1 0 #1 1}%
-        \llap{\usebox{\foobox}}%
-        \pdfrestore
-    }%
-}
-
-\usepackage{etoolbox}
-\apptocmd{\sloppy}{\hbadness 10000\relax}{}{}
-\emergencystretch=1em
-
-\makeatletter
-\g@addto@macro\bfseries{\boldmath}
-\makeatother
-
-\usepackage{embedall}
-\embedfile[desc = bibliography source file]{schuller_rigged_hilbert_spaces.bib}
 
 \begin{document}
 
@@ -463,7 +484,7 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
 
     We now look at plane waves $E_k \in \distr$ of wavenumber $k \in \nn$. These are very important for quantum mechanics. $E_k$ is defined by \[(E_k)_0 (x) = \e^{\i kx}\] and $(E_k)_m = 0$ for all $m \neq 0$. Note that $E_k \notin \ltwor \supset \schwartzr$.
 
-    \section{Embedding of \texorpdfstring{\(\ltwor\)}{L²(ℝ)} in \texorpdfstring{\(\distr\)}{𝒮⁺(ℝ)}}
+    \section{Embedding of \texorpdfstring{\(\ltwor\)}{L²(ℝ)} in \texorpdfstring{\(\symbfcal{S}^\times(\symbb{R})\)}{𝒮⁺(ℝ)}}
 
 
     Tempered distributions are defined as continuous linear functionals on the Schwartz space in most literature. The topology on $\schwartzr$ is the one induced by seminorms. The equivalence of this definition and Prof.\@ Schuller's definition is asked as a problem in the book of Reed and Simon~\cite[prob.~24, chp.~5, p.~176]{Reed}.
@@ -482,7 +503,7 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
 
     It can be shown that the above embedding function defines each $\Phi_\phi[f]$ to be a continuous linear functional for all $\phi \in \ltwor$ and $f \in \schwartzr$. Thus, $\Phi_\phi$ is a tempered distribution. This enables us to write $\ltwor \xhookrightarrow{} \distr$, and by abuse of notation, $\eta (\ltwor) \subset \distr$ can be written as $\ltwor \subset \distr$.
 
-    \section{Lifting differential operators from \texorpdfstring{\(\schwartzr\)}{𝒮(ℝ)}}
+    \section{Lifting differential operators from \texorpdfstring{\(\symbfcal{S}(\symbb{R})\)}{𝒮(ℝ)}}
 
     Let $D$ be defined as follows.
     \begin{align*}
@@ -534,9 +555,9 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
         \[
         \spec_\text{pp}(A) \coloneq \{\lambda \in \cc \mid \w_A(A - \lambda \cdot \identity) = \overline{\w_A(A - \lambda \cdot \identity)} \neq \hilbert\}.
         \]
-        \item The \textit{point embedded in continuum spectrum} of $A$, $\spec_{\text{c}}(A)$, is defined as
+        \item The \textit{point embedded in continuum spectrum} of $A$, $\spec_{\text{pec}}(A)$, is defined as
         \[
-        \spec_{\text{c}}(A) \coloneq \{\lambda \in \cc \mid \w_A(A - \lambda \cdot \identity) \neq \overline{\w_A(A - \lambda \cdot \identity)} \neq \hilbert\}.
+        \spec_{\text{pec}}(A) \coloneq \{\lambda \in \cc \mid \w_A(A - \lambda \cdot \identity) \neq \overline{\w_A(A - \lambda \cdot \identity)} \neq \hilbert\}.
         \]
         \item The \textit{purely continuous spectrum} of $A$, $\spec_\text{pc}(A)$, is defined as
         \[
@@ -547,12 +568,12 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
 
     We further define the \textit{point spectrum} of $A$, $\spec_{\symrm{p}}(A)$, to be the union of the pure point and the point embedded in continuum spectra.
     \begin{align*}
-        \spec_{\symrm{p}}(A) &=  \spec_\text{pp}(A) \cup \spec_{\text{c}}(A)\\
+        \spec_{\symrm{p}}(A) &=  \spec_\text{pp}(A) \cup \spec_{\text{pec}}(A)\\
         \spec_{\symrm{p}}(A) &= \{\lambda \in \cc \mid\overline{\w_A(A - \lambda \cdot \identity)} \neq \hilbert\}.
     \end{align*}
     We similarly define the \textit{continuous spectrum} of $A$, $\spec_\text{c} (A)$, to be the union of the continuous and the point embedded in continuum spectra.
     \begin{align*}
-        \spec_{\symrm{c}}(A) &=  \spec_\text{pc}(A) \cup \spec_{\text{c}}(A)\\
+        \spec_{\symrm{c}}(A) &=  \spec_\text{pc}(A) \cup \spec_{\text{pec}}(A)\\
         \spec_{\symrm{c}}(A) &= \{\lambda \in \cc \mid \w_A(A - \lambda \cdot \identity) \neq \overline{\w_A(A - \lambda \cdot \identity)}\}.
     \end{align*}
     Since $\spec_{\text{c}}(A)$ may not be empty, the point and continuous spectra may not in general form a partition of the spectrum. We note an important result that the spectrum of a self-adjoint operator on a Hilbert space is always real, i.e.
