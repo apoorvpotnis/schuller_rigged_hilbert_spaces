@@ -19,7 +19,8 @@
 \usepackage[ngerman,english]{babel}
 \PassOptionsToPackage{math-style=ISO, bold-style=ISO, sans-style=italic, nabla=upright, partial=upright, warnings-off={mathtools-colon,mathtools-overbracket}}{unicode-math}
 
-\usepackage{mathtools, microtype}
+\usepackage{mathtools}
+\usepackage[final, nopatch=footnote]{microtype}
 \usepackage{setspace}
 \usepackage[style=british]{csquotes}
 
@@ -84,8 +85,7 @@ SmallCapsFeatures={Numbers=OldStyle},%
 SlantedFont=NewCMSans10-Oblique.otf,%
 BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
 ]{NewCMSans10-Regular.otf}
-\setmathfont{NewCMMath-Book.otf}[StylisticSet=3, BoldFont = NewCMMath-Bold.otf]
-\setmathfont[range={\symfrak,\symbffrak}, BoldFont = NewCMMath-Bold.otf]{NewCMMath-Regular.otf}
+
 \setmonofont[%
 ItalicFont=NewCMMono10-Italic.otf,%
 BoldFont=NewCMMono10-Bold.otf,%
@@ -123,16 +123,68 @@ SlantedFont=NewCMSans10-Oblique.otf,%
 BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
 ]{NewCMSans10-Regular.otf}
 
+\directlua{
+    local kerns = {
+        ["NewCMMath-Book"] = {
+          ["uni211D.bb"] = { topright = { { kern = -70 } } },
+          ["u1D6F7"] = {bottomright = { { kern = 0 } } },
+          ["u1D6F9"] = {bottomright = { { kern = 0 } } },
+          ["u1D464"] = {bottomright = { { kern = -90 } } },
+          ["u1D437"] = {bottomright = { { kern = 0 } } },
+          ["L"] = {topright = { { kern = -30 } } }
+        },
+        ["NewCMMath-Bold"] = {
+          ["uni211D.bb"] = { topright = { { kern = -30 } } }
+        }
+    }
+    local function addkerns(tfmdata)
+        if tfmdata.mathparameters then
+            local kerns = kerns[tfmdata.properties.fontname]
+            local unicodes = tfmdata.resources.unicodes
+            if kerns then
+                local characters = tfmdata.characters
+                for name, specification in pairs(kerns) do
+                    local character = characters[unicodes[name]]
+                    if character and not character.mathkerns then
+                        character.mathkerns = specification
+                    end
+                end
+            end
+        end
+    end
+    fonts.handlers.otf.features.register {
+        name         = "mathkerns",
+        description  = "additional math kerns",
+        initializers = {
+            position = 1,
+            base     = addkerns,
+            node     = addkerns,
+        }
+    }
+}
+
+\setmathfont[
+    StylisticSet={3},
+    BoldFont = NewCMMath-Bold.otf,
+    RawFeature=+mathkerns
+]{NewCMMath-Book.otf}
+\newcommand{\ipatext}{\addfontfeature{StylisticSet=5}}
+\newcommand{\textipa}[1]{{\ipatext#1}}
+\setmathfont[
+    range={\symfrak,\symbffrak}, 
+    BoldFont = NewCMMath-Bold.otf
+]{NewCMMath-Regular.otf}
+
 \AddToHook{bfseries}{\boldmath} % Correct macro by egreg 
 
 % code copied from here https://tex.stackexchange.com/a/82221/128462
 
 \everymath=\expandafter{%
 \the\everymath%
-\Umathsubshiftdown\textstyle=1.9pt\Umathsubshiftdrop\textstyle=0.5pt}
+\Umathsubshiftdown\textstyle=1.75pt\Umathsubshiftdrop\textstyle=0.5pt}
 \everydisplay=\expandafter{%
 \the\everydisplay%
-\Umathsubshiftdown\displaystyle=1.9pt\Umathsubshiftdrop\displaystyle=0.5pt}
+\Umathsubshiftdown\displaystyle=1.75pt\Umathsubshiftdrop\displaystyle=0.5pt}
 
 % code copied from here https://tex.stackexchange.com/a/754196/128462
 
@@ -163,17 +215,17 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
 \begin{filecontents}[overwrite]{schuller_rigged_hilbert_spaces.bib}
 
     @misc{riggedphyse,
-        author = {user1504 (\url{https://physics.stackexchange.com/users/1504/user1504})},
+        author = {User `user1504' (\url{https://physics.stackexchange.com/users/1504/user1504})},
         howpublished = {Physics Stack Exchange (\url{https://physics.stackexchange.com})},
-        note = {(version: 2012-11-06 16:28:47Z)},
+        note = {Version: 2012-11-06 16:28:47Z},
         title = {Answer to the question `Rigged Hilbert space and QM'},
         url = {https://physics.stackexchange.com/a/43519/81224}
     }
 
     @misc{riggedmo,
-        author = {MathMath (\url{https://mathoverflow.net/users/152094/mathmath})},
+        author = {User `MathMath' (\url{https://mathoverflow.net/users/152094/mathmath})},
         howpublished = {MathOverflow (\url{https://mathoverflow.net})},
-        note = {(version: 2022-08-28 11:24:49Z)},
+        note = {Version: 2022-08-28 11:24:49Z},
         title = {Good references for Rigged Hilbert spaces?},
         url = {https://mathoverflow.net/q/43313}
     }
@@ -181,7 +233,7 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
     @misc{riggedmrefmo,
         author = {Todd Trimble (\url{https://mathoverflow.net/users/2926/todd-trimble})},
         howpublished = {MathOverflow (\url{https://mathoverflow.net})},
-        note = {(version: 2021-2-14 14:21:58Z)},
+        note = {Version: 2021-2-14 14:21:58Z},
         title = {Rigged Hilbert spaces and the spectral theory in quantum mechanics},
         url = {https://mathoverflow.net/q/383952}
     }
@@ -189,15 +241,23 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
     @misc{spectralthm,
         author = {Jonathan Gleason (\url{https://mathoverflow.net/users/16639/jonathan-gleason})},
         howpublished = {MathOverflow (\url{https://mathoverflow.net})},
-        note = {(version: 2017-11-08 13:58:44Z)},
+        note = {Version: 2017-11-08 13:58:44Z},
         title = {Answer to the question `Spectral theorem for self-adjoint differential operator on Hilbert space'},
         url = {https://mathoverflow.net/a/126758}
+    }
+
+    @misc{zwarich,
+        author = {Cameron Zwarich (\url{https://mathoverflow.net/users/99234/cameron-zwarich})},
+        howpublished = {MathOverflow (\url{https://mathoverflow.net})},
+        note = {Version: 2017-11-08 18:50:20Z},
+        title = {Comment on an answer to the question `Spectral theorem for self-adjoint differential operator on Hilbert space'},
+        url = {https://mathoverflow.net/questions/125655/spectral-theorem-for-self-adjoint-differential-operator-on-hilbert-space/126758#comment705509_126758}
     }
 
     @misc{riggedmoretti,
         author = {Valter Moretti (\url{https://physics.stackexchange.com/users/35354/valter-moretti})},
         howpublished = {Physics Stack Exchange (\url{https://physics.stackexchange.com})},
-        note = {(version: 2023-02-03 10:41:47Z)},
+        note = {Version: 2023-02-03 10:41:47Z},
         title = {Answer to the question `Is rigged Hilbert space generally considered the correct structure for QM?'},
         url = {https://physics.stackexchange.com/q/748060/81224}
     }
@@ -205,7 +265,7 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
     @misc{riggedmurray,
         author = {J.\@ Murray (\url{https://physics.stackexchange.com/users/156895/j-murray})},
         howpublished = {Physics Stack Exchange (\url{https://physics.stackexchange.com})},
-        note = {(version: 2020-03-30 02:00:10Z)},
+        note = {Version: 2020-03-30 02:00:10Z},
         title = {Answer to the question `Where does ket vector live in rigged Hilbert space?'},
         url = {https://physics.stackexchange.com/a/441510/81224}
     }
@@ -217,8 +277,10 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
         issn = {1544-9998},
         publisher = {Birkhäuser Basel},
         series = {Progress in Mathematical Physics},
-        title = {Mathematical Methods in Physics: Distributions, Hilbert Space Operators, Variational Methods, and Applications in Quantum Physics},
+        title = {Mathematical Methods in Physics},
+        subtitle = {Distributions, Hilbert Space Operators, Variational Methods, and Applications in Quantum Physics},
         year = {2015},
+        number = {69},
         addendum = {See the nuclear spectral theorem, appearing as theorem~29.5 on p.~452.}
     }
 
@@ -230,26 +292,29 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
         year = {2020}
     }
 
-    @book{Reed,
+    @mvbook{Reed,
         author = {Reed, Michael and Simon, Barry},
         isbn = {978-0-080-57048-8},
         publisher = {Academic Press, Inc. London},
-        title = {Methods of Modern Mathematical Analysis I: Functional Analysis},
+        title = {Methods of Modern Mathematical Physics},
+        subtitle = {Functional Analysis},
         edition = {Revised and Enlarged editon},
         year = {1980},
         volume = 1,
         addendum = {`Chapter 5: Locally Convex Spaces' contains material pertaining to this lecture. Famously, the authors remark that ``We must emphasize that we regard the spectral theorem as sufficient for any argument where a nonrigorous approach might rely on Dirac notation; thus we only recommend the abstract rigged space approach to readers with a strong emotional attachment to Dirac formalism."}
     }
 
-    @book{gelfand,
+    @mvbook{gelfand,
         author = {Gelfand, Israel and Vilenkin, Naum},
         translator = {Feinstein, Amiel},
-        title = {Generalized Functions: Applications of Harmonic Analysis},
+        title = {Generalized Functions},
+        subtitle = {Applications of Harmonic Analysis},
         publisher = {Academic Press, Inc. London},
         year = {1964},
         isbn = {0-12-279504-0},
+        origlanguage = {Russian},
         volume = 4,
-        addendum = {The statements as cited appear on p.~126. However, it has been pointed out~\cite{spectralthm} that the actual proof of the generalized eigenvector expansion given here is completely wrong. Gould's paper~\cite{gould} contains the correct proof.}
+        addendum = {The statements as cited appear on p.~126. However, it has been pointed out by Cameron Zwarich~\cite{zwarich} that the actual proof of the generalized eigenvector expansion given here is completely wrong. Gould's paper~\cite{gould} contains the correct proof.}
     }
 
     @phdthesis{madrid,
@@ -270,6 +335,17 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
         pages = {745--754},
         doi = {https://doi.org/10.1112/jlms/s1-43.1.745},
         year = {1968}
+    }
+
+    @book{bohm,
+        author = {Bohm, Arno and Gadella, Manuel},
+        isbn = {3-540-51916-5},
+        title = {Dirac Kets, Gamow Vectors and Gel'fand Triplets},
+        subtitle = {The Rigged Hilbert Space Formulation of Quantum Mechanics},
+        year = {1969},
+        publisher = {Springer-Verlag},
+        series = {Lecture Notes in Physics},
+        number = {348}
     }
 
     @unpublished{Schuller,
@@ -298,30 +374,30 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
 
 \usepackage{mleftright}
 
-\usepackage{luatex85}
-\newsavebox{\foobox}
-\newcommand{\slantbox}[2][.5]
-{%
-    \mbox
-    {%
-        \sbox{\foobox}{#2}%
-        \hskip\wd\foobox
-        \pdfsave
-        \pdfsetmatrix{1 0 #1 1}%
-        \llap{\usebox{\foobox}}%
-        \pdfrestore
-    }%
-}
+% \usepackage{luatex85}
+% \newsavebox{\foobox}
+% \newcommand{\slantbox}[2][.5]
+% {%
+%     \mbox
+%     {%
+%         \sbox{\foobox}{#2}%
+%         \hskip\wd\foobox
+%         \pdfsave
+%         \pdfsetmatrix{1 0 #1 1}%
+%         \llap{\usebox{\foobox}}%
+%         \pdfrestore
+%     }%
+% }
 
 \usepackage{etoolbox}
 \apptocmd{\sloppy}{\hbadness 10000\relax}{}{}
 \emergencystretch=1em
 
 \usepackage{hyperref}
-\hypersetup{linktoc=all, citecolor=red, pdfencoding=auto, psdextra, colorlinks=true, linkcolor=red, breaklinks=true, urlcolor=blue, pdftitle={Schuller -- Rigged Hilbert Spaces}, bookmarksopen=true, pdfauthor={Apoorv Potnis}, pdfsubject={Rigged Hilbert Spaces -- Quantum Mechanics}, unicode=true, pdftoolbar=true, pdfmenubar=true, pdfstartview={FitH}, pdfkeywords={Frederic Schuller, Rigged Hilbert Spaces, Quantum Mechanics, Mathematical Physics, Lecture Notes, Bras, Kets, Schwartz Space, Tempered Distributions, Distributions, Gelfand Triple, Generalized Eigenvalues, Dirac Calculus, Nuclear Spectral Theorem}}
+\hypersetup{linktoc=all, citecolor=red, pdfencoding=auto, psdextra, colorlinks=true, linkcolor=red, breaklinks=true, urlcolor=blue, pdftitle={Schuller -- Rigged Hilbert Spaces}, bookmarksopen=true, pdfauthor={Apoorv Potnis}, pdfsubject={Rigged Hilbert Spaces -- Quantum Mechanics}, unicode=true, pdftoolbar=true, pdfmenubar=true, pdfstartview={FitH}, pdfkeywords={Frederic Schuller, Rigged Hilbert Spaces, Quantum Mechanics, Mathematical Physics, Lecture Notes, Bras, Kets, Schwartz Space, Tempered Distributions, Distributions, Gelfand Triple, Generalized Eigenvalues, Dirac Calculus, Nuclear Spectral Theorem, Gelfand--Maurin Theorem}}
 \usepackage{cleveref, xurl, bookmark}
 
-\newcommand{\ltwo}{\symup{L\kern-0.5pt^2}}
+\newcommand{\ltwo}{\symup{L^2}}
 \newcommand{\position}{Q}
 \newcommand{\momentum}{P}
 \newcommand{\rthree}{\symbb{R}^3}
@@ -344,15 +420,17 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
 \newcommand{\cinfinity}{\symrm{C}^\infty}
 \newcommand{\family}{F}
 \newcommand{\lift}{\hat{D}}
-\newcommand{\domain}{\symcal{D}\kern-2pt}
+\newcommand{\domain}{\symcal{D}}
 \newcommand{\identity}{\symrm{id}}
-\newcommand{\w}{w\kern-1.5pt}
 \DeclareMathOperator{\spec}{spec}
 \newcommand{\resolvent}{\symup{\rho}}
 
 \DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
 \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
 \newcommand{\der}{\operatorname{d\!}{}}
+
+% \usepackage{lua-visual-debug}
+% \lvdset{glyph={show=true}}
 
 \begin{document}
 
@@ -452,7 +530,7 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
     The space of \textit{tempered distributions} $\distr$ is defined as follows. Let
     \[
     \distar \coloneq \{\Phi \mid \Phi \colon \schwartzr \rightarrow \cc, \text{ $\Phi$ is linear}\}
-    \] denote the algebraic dual of $\schwartzr$.  We say that a function $g \colon \rr \rightarrow \cc$ is polynomially bounded if there exists a polynomial $p \colon \rr \rightarrow \cc$ such that $\abs{g(x)} \leq \abs{p(x)}$, for all $x\in \rr$. Let $\family$ denote a set of continuous, polynomially bounded functions from $\rr$ to $\cc$. It is not required that elements of $\family$ be linear. We say that a $\Phi \in \distar$ is a tempered distribution if there exists such a family $\family = \{\Phi_m \mid m \in \nn\}$, such that for each $f\in \schwartzr$,
+    \] denote the algebraic dual of $\schwartzr$.  We say that a function $g \colon \rr \rightarrow \cc$ is polynomially bounded if there exists a polynomial $p \colon \rr \rightarrow \cc$ such that $\abs{g(x)} \leq \abs{p(x)}$, for all $x\in \rr$. Let $\family$ denote a set of continuous, polynomially bounded functions from $\rr$ to $\cc$. It is not required that elements of $\family$ be linear. We say that a $\Phi \in \distar$ is a tempered distribution if there exists a family $\family = \{\Phi_m \mid m \in \nn\}$, such that for each $f\in \schwartzr$,
     \[
     \Phi[f] = \int_{\rr} \der x \sum_{m \in \nn} \Phi_m (x) \cdot f^{(m)} (x).
     \]
@@ -539,29 +617,29 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
 
     \section{Spectrum of self-adjoint operators}
 
-    Let $A \colon \domain_A \rightarrow \hilbert$ be a self-adjoint operator, where $\domain_A$ is a dense subset of $\hilbert$. We denote the range of the operator $(A - \lambda \cdot \identity)$ by $\w_A(\lambda)$, where $\lambda \in \cc$ and $\identity \colon \hilbert \rightarrow \hilbert$ denotes the identity function on $\hilbert$.
+    Let $A \colon \domain_A \rightarrow \hilbert$ be a self-adjoint operator, where $\domain_A$ is a dense subset of $\hilbert$. We denote the range of the operator $(A - \lambda \cdot \identity)$ by $w_A(\lambda)$, where $\lambda \in \cc$ and $\identity \colon \hilbert \rightarrow \hilbert$ denotes the identity function on $\hilbert$.
     \[
-    \w_A(\lambda) \coloneq (A - \lambda \cdot \identity)\,\domain_A.
+    w_A(\lambda) \coloneq (A - \lambda \cdot \identity)\,\domain_A.
     \]
     We say that $\lambda \in \cc$ is a \textit{regular point} if and only if
     \[
-    \w_A(\lambda) = \overline{\w_A(\lambda)} = \hilbert.
+    w_A(\lambda) = \overline{w_A(\lambda)} = \hilbert.
     \]
-    Here, $\overline{\w_A(\lambda)}$ denotes the topological closure of $\w_A(\lambda)$. The set of regular points is called a \textit{resolvent set}. The complement of the resolvent set is known as the \textit{spectrum} of the operator, denoted as $\spec(A)$. $\spec(A) = \cc \setminus \resolvent(A)$.
+    Here, $\overline{w_A(\lambda)}$ denotes the topological closure of $w_A(\lambda)$. The set of regular points is called a \textit{resolvent set}. The complement of the resolvent set is known as the \textit{spectrum} of the operator, denoted as $\spec(A)$. $\spec(A) = \cc \setminus \resolvent(A)$.
 
     We define a decomposition of the spectrum of our self-adjoint operator $A$ as follows.
     \begin{enumerate}
         \item The \textit{pure point spectrum} of $A$, $\spec_\text{pp}(A)$, is defined as
         \[
-        \spec_\text{pp}(A) \coloneq \{\lambda \in \cc \mid \w_A(A - \lambda \cdot \identity) = \overline{\w_A(A - \lambda \cdot \identity)} \neq \hilbert\}.
+        \spec_\text{pp}(A) \coloneq \{\lambda \in \cc \mid w_A(A - \lambda \cdot \identity) = \overline{w_A(A - \lambda \cdot \identity)} \neq \hilbert\}.
         \]
         \item The \textit{point embedded in continuum spectrum} of $A$, $\spec_{\text{pec}}(A)$, is defined as
         \[
-        \spec_{\text{pec}}(A) \coloneq \{\lambda \in \cc \mid \w_A(A - \lambda \cdot \identity) \neq \overline{\w_A(A - \lambda \cdot \identity)} \neq \hilbert\}.
+        \spec_{\text{pec}}(A) \coloneq \{\lambda \in \cc \mid w_A(A - \lambda \cdot \identity) \neq \overline{w_A(A - \lambda \cdot \identity)} \neq \hilbert\}.
         \]
         \item The \textit{purely continuous spectrum} of $A$, $\spec_\text{pc}(A)$, is defined as
         \[
-        \spec_\text{pc}(A) \coloneq \{\lambda \in \cc \mid \w_A(A - \lambda \cdot \identity) \neq \overline{\w_A(A - \lambda \cdot \identity)} = \hilbert\}.
+        \spec_\text{pc}(A) \coloneq \{\lambda \in \cc \mid w_A(A - \lambda \cdot \identity) \neq \overline{w_A(A - \lambda \cdot \identity)} = \hilbert\}.
         \]
     \end{enumerate}
     These form a partition of $\spec(A)$, i.e. they are pairwise disjoint and their union is $\spec(A)$.
@@ -569,12 +647,12 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
     We further define the \textit{point spectrum} of $A$, $\spec_{\symrm{p}}(A)$, to be the union of the pure point and the point embedded in continuum spectra.
     \begin{align*}
         \spec_{\symrm{p}}(A) &=  \spec_\text{pp}(A) \cup \spec_{\text{pec}}(A)\\
-        \spec_{\symrm{p}}(A) &= \{\lambda \in \cc \mid\overline{\w_A(A - \lambda \cdot \identity)} \neq \hilbert\}.
+        \spec_{\symrm{p}}(A) &= \{\lambda \in \cc \mid\overline{w_A(A - \lambda \cdot \identity)} \neq \hilbert\}.
     \end{align*}
     We similarly define the \textit{continuous spectrum} of $A$, $\spec_\text{c} (A)$, to be the union of the continuous and the point embedded in continuum spectra.
     \begin{align*}
         \spec_{\symrm{c}}(A) &=  \spec_\text{pc}(A) \cup \spec_{\text{pec}}(A)\\
-        \spec_{\symrm{c}}(A) &= \{\lambda \in \cc \mid \w_A(A - \lambda \cdot \identity) \neq \overline{\w_A(A - \lambda \cdot \identity)}\}.
+        \spec_{\symrm{c}}(A) &= \{\lambda \in \cc \mid w_A(A - \lambda \cdot \identity) \neq \overline{w_A(A - \lambda \cdot \identity)}\}.
     \end{align*}
     Since $\spec_{\text{c}}(A)$ may not be empty, the point and continuous spectra may not in general form a partition of the spectrum. We note an important result that the spectrum of a self-adjoint operator on a Hilbert space is always real, i.e.
     \[
@@ -597,7 +675,7 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
     \[
     \hat{\momentum}E_k = \hbar k \cdot E_k.
     \]
-    We note a monumental result that a self-adjoint operator on our rigged Hilbert space, $\schwartzr \subset \ltwor \subset \distr$, has a complete system of generalised eigenvectors with real eigenvalues. The same holds true for unitary operators as well, with complex eigenvalues of unit modulus~\cite{gelfand, spectralthm, gould, Blanchard}.
+    We note a monumental result that a self-adjoint operator on our rigged Hilbert space, $\schwartzr \subset \ltwor \subset \distr$, has a complete system of generalised eigenvectors with real eigenvalues. This result is sometimes known as the Gelfand--Maurin theorem and sometimes as the nuclear spectral theorem. The same holds true for unitary operators as well, with complex eigenvalues of unit modulus~\cite{gelfand, spectralthm, gould, Blanchard}.
 
     \section{Bras and kets}
 
