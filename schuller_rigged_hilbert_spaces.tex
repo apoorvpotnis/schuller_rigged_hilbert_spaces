@@ -312,7 +312,7 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
         publisher = {Academic Press, Inc. London},
         year = {1964},
         isbn = {0-12-279504-0},
-        origlanguage = {Russian},
+        origlanguage = {russian},
         volume = 4,
         addendum = {The statements as cited appear on p.~126. However, it has been pointed out by Cameron Zwarich~\cite{zwarich} that the actual proof of the generalized eigenvector expansion given here is completely wrong. Gould's paper~\cite{gould} contains the correct proof.}
     }
@@ -367,11 +367,35 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
 
 \end{filecontents}
 
-\usepackage[sorting=none]{biblatex}
-\renewcommand*{\subtitlepunct}{\addcolon\space}
+\usepackage[sorting=none, hyperref, backref]{biblatex}
+
 \addbibresource{schuller_rigged_hilbert_spaces.bib}
 \usepackage{embedall}
 \embedfile[desc = bibliography source file]{schuller_rigged_hilbert_spaces.bib}
+
+\renewcommand*{\subtitlepunct}{\addcolon\space}
+
+% moewe's code from here https://tex.stackexchange.com/a/609093/128462
+
+\DefineBibliographyStrings{english}{
+  backrefpage  = {cited on page},
+  backrefpages = {cited on pages},
+}
+
+\renewcommand*{\bibpagerefpunct}{%
+  \finentrypunct\space}
+
+\DeclareFieldFormat{bracketswithperiod}{\mkbibbrackets{#1\addperiod}}
+
+\renewbibmacro*{pageref}{%
+  \iflistundef{pageref}
+    {}
+    {\printtext[bracketswithperiod]{%
+       \ifnumgreater{\value{pageref}}{1}
+         {\bibstring{backrefpages}\ppspace}
+         {\bibstring{backrefpage}\ppspace}%
+       \printlist[pageref][-\value{listtotal}]{pageref}}%
+\renewcommand*{\finentrypunct}{}}}
 
 \usepackage{mleftright}
 
