@@ -280,7 +280,7 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
         title = {Mathematical Methods in Physics},
         subtitle = {Distributions, Hilbert Space Operators, Variational Methods, and Applications in Quantum Physics},
         year = {2015},
-        number = {69},
+        volume = 69,
         addendum = {See the nuclear spectral theorem, appearing as theorem~29.5 on p.~452.}
     }
 
@@ -345,7 +345,7 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
         year = {1969},
         publisher = {Springer-Verlag},
         series = {Lecture Notes in Physics},
-        number = {348}
+        volume = 348
     }
 
     @unpublished{Schuller,
@@ -368,6 +368,7 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
 \end{filecontents}
 
 \usepackage[sorting=none]{biblatex}
+\renewcommand*{\subtitlepunct}{\addcolon\space}
 \addbibresource{schuller_rigged_hilbert_spaces.bib}
 \usepackage{embedall}
 \embedfile[desc = bibliography source file]{schuller_rigged_hilbert_spaces.bib}
