@@ -14,7 +14,7 @@
 % arara: lualatex: {shell: yes}
 % arara: lualatex: {shell: yes}
 
-\documentclass[12pt, a4 paper]{article}
+\documentclass[11pt, a4paper]{article}
 
 \usepackage[ngerman,english]{babel}
 \PassOptionsToPackage{math-style=ISO, bold-style=ISO, sans-style=italic, nabla=upright, partial=upright, warnings-off={mathtools-colon,mathtools-overbracket}}{unicode-math}
@@ -123,18 +123,20 @@ SlantedFont=NewCMSans10-Oblique.otf,%
 BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
 ]{NewCMSans10-Regular.otf}
 
-\directlua{
+
+\usepackage{luacode}
+\begin{luacode}
     local kerns = {
         ["NewCMMath-Book"] = {
-          ["uni211D.bb"] = { topright = { { kern = -70 } } },
-          ["u1D6F7"] = {bottomright = { { kern = 0 } } },
-          ["u1D6F9"] = {bottomright = { { kern = 0 } } },
-          ["u1D464"] = {bottomright = { { kern = -90 } } },
-          ["u1D437"] = {bottomright = { { kern = 0 } } },
-          ["L"] = {topright = { { kern = -30 } } }
+          ["uni211D.bb"] = { topright = { { kern = -70 } } }, -- double-struck upright uppercase R
+          ["u1D6FF"] = {bottomright = { { kern = -30 } } }, -- mathematical italic lowercase delta
+          ["u1D49F"] = {bottomright = { { kern = -100 } } }, -- mathematical calligraphic italic uppercase D
+          ["L"] = {topright = { { kern = -40 } } },
+          ["u1D464"] = {bottomright = { { kern = -150 } } } -- mathematical italic lowercase w
         },
         ["NewCMMath-Bold"] = {
-          ["uni211D.bb"] = { topright = { { kern = -30 } } }
+          ["uni211D.bb"] = { topright = { { kern = -30 } } }, -- double-struck upright uppercase R
+          ["L"] = {topright = { { kern = -50 } } }
         }
     }
     local function addkerns(tfmdata)
@@ -161,7 +163,7 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
             node     = addkerns,
         }
     }
-}
+\end{luacode}
 
 \setmathfont[
     StylisticSet={3},
@@ -171,7 +173,7 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
 \newcommand{\ipatext}{\addfontfeature{StylisticSet=5}}
 \newcommand{\textipa}[1]{{\ipatext#1}}
 \setmathfont[
-    range={\symfrak,\symbffrak}, 
+    range={\symfrak,\symbffrak,\symcal,\symbfcal,\symscr,\symbfscr}, 
     BoldFont = NewCMMath-Bold.otf
 ]{NewCMMath-Regular.otf}
 
@@ -179,12 +181,12 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
 
 % code copied from here https://tex.stackexchange.com/a/82221/128462
 
-\everymath=\expandafter{%
-\the\everymath%
-\Umathsubshiftdown\textstyle=1.75pt\Umathsubshiftdrop\textstyle=0.5pt}
-\everydisplay=\expandafter{%
-\the\everydisplay%
-\Umathsubshiftdown\displaystyle=1.75pt\Umathsubshiftdrop\displaystyle=0.5pt}
+% \everymath=\expandafter{%
+% \the\everymath%
+% \Umathsubshiftdown\textstyle=1.75pt\Umathsubshiftdrop\textstyle=0.5pt}
+% \everydisplay=\expandafter{%
+% \the\everydisplay%
+% \Umathsubshiftdown\displaystyle=1.75pt\Umathsubshiftdrop\displaystyle=0.5pt}
 
 % code copied from here https://tex.stackexchange.com/a/754196/128462
 
@@ -195,10 +197,10 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
   }%
 }
 
-\DeclareMathAlphabet\cmmathcal{OMS}{cmsy}{m}{n}
-\DeclareMathAlphabet\cmmathbfcal{OMS}{cmsy}{b}{n}
-\renewcommand{\symcal}{\cmmathcal}
-\renewcommand{\symbfcal}{\cmmathbfcal}
+% \DeclareMathAlphabet\cmmathcal{OMS}{cmsy}{m}{n}
+% \DeclareMathAlphabet\cmmathbfcal{OMS}{cmsy}{b}{n}
+% \renewcommand{\symcal}{\cmmathcal}
+% \renewcommand{\symbfcal}{\cmmathbfcal}
 
 \usepackage{amsthm}
 \theoremstyle{definition}
@@ -263,7 +265,7 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
     }
 
     @misc{riggedmurray,
-        author = {J.\@ Murray (\url{https://physics.stackexchange.com/users/156895/j-murray})},
+        author = {User `J.\@ Murray' (\url{https://physics.stackexchange.com/users/156895/j-murray})},
         howpublished = {Physics Stack Exchange (\url{https://physics.stackexchange.com})},
         note = {Version: 2020-03-30 02:00:10Z},
         title = {Answer to the question `Where does ket vector live in rigged Hilbert space?'},
@@ -298,7 +300,7 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
         publisher = {Academic Press, Inc. London},
         title = {Methods of Modern Mathematical Physics},
         subtitle = {Functional Analysis},
-        edition = {Revised and Enlarged editon},
+        edition = {Revised and enlarged edition},
         year = {1980},
         volume = 1,
         addendum = {`Chapter 5: Locally Convex Spaces' contains material pertaining to this lecture. Famously, the authors remark that ``We must emphasize that we regard the spectral theorem as sufficient for any argument where a nonrigorous approach might rely on Dirac notation; thus we only recommend the abstract rigged space approach to readers with a strong emotional attachment to Dirac formalism."}
@@ -414,9 +416,9 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
 %     }%
 % }
 
-\usepackage{etoolbox}
-\apptocmd{\sloppy}{\hbadness 10000\relax}{}{}
-\emergencystretch=1em
+% \usepackage{etoolbox}
+% \apptocmd{\sloppy}{\hbadness 10000\relax}{}{}
+% \emergencystretch=1em
 
 \usepackage{hyperref}
 \hypersetup{linktoc=all, citecolor=red, pdfencoding=auto, psdextra, colorlinks=true, linkcolor=red, breaklinks=true, urlcolor=blue, pdftitle={Schuller -- Rigged Hilbert Spaces}, bookmarksopen=true, pdfauthor={Apoorv Potnis}, pdfsubject={Rigged Hilbert Spaces -- Quantum Mechanics}, unicode=true, pdftoolbar=true, pdfmenubar=true, pdfstartview={FitH}, pdfkeywords={Frederic Schuller, Rigged Hilbert Spaces, Quantum Mechanics, Mathematical Physics, Lecture Notes, Bras, Kets, Schwartz Space, Tempered Distributions, Distributions, Gelfand Triple, Generalized Eigenvalues, Dirac Calculus, Nuclear Spectral Theorem, Gelfand--Maurin Theorem}}
@@ -433,7 +435,7 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
 \newcommand{\hilbert}{\symcal{H}}
 \newcommand{\ltwor}{\ltwo(\rr)}
 \newcommand{\poly}{\symcal{P}}
-\newcommand{\schwartz}{\symcal{S}}
+\newcommand{\schwartz}{\symup{S}}
 \newcommand{\schwartzr}{\schwartz(\rr)}
 \newcommand{\dist}{\schwartz^\times}
 \newcommand{\distr}{\dist(\rr)}
@@ -445,14 +447,17 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
 \newcommand{\cinfinity}{\symrm{C}^\infty}
 \newcommand{\family}{F}
 \newcommand{\lift}{\hat{D}}
-\newcommand{\domain}{\symcal{D}}
-\newcommand{\identity}{\symrm{id}}
+% \newcommand{\domain}{\symcal{D}}
+\DeclareMathOperator{\domain}{dom}
+\newcommand{\identity}{\symbb{I}}
 \DeclareMathOperator{\spec}{spec}
-\newcommand{\resolvent}{\symup{\rho}}
+\newcommand{\resolvent}{\rho}
 
 \DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
 \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
-\newcommand{\der}{\operatorname{d\!}{}}
+% \newcommand{\der}{\operatorname{d\!}{}}
+\newcommand{\der}{\mathop{}\!\symrm{d}}
+
 
 % \usepackage{lua-visual-debug}
 % \lvdset{glyph={show=true}}
@@ -461,28 +466,28 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
 
     \maketitle
 
-    These are lecture notes by Apoorv Potnis of the lecture `\selectlanguage{ngerman}Aufgetakelte Hilberträume\selectlanguage{english}' or `Rigged Hilbert Spaces', given by \textbf{Prof.\@ Frederic Paul Schuller}, as the eighth lecture in the course `\selectlanguage{ngerman}Theoretische Physik 2: Theoretische Quantenmechanik\selectlanguage{english}' in 2014 at the \selectlanguage{ngerman}Friedrich-Alexander-Universität Erlangen-Nürnberg\selectlanguage{english}. While the original lecture is in German, these notes are in English and have been prepared using YouTube's automatic subtitle translation tool. The lecture is available at \url{https://www.youtube.com/watch?v=FNJOyxOp3Ik&list=PLPO5pgr_frzTeqa_thbltYjyw8F9ehw7v&index=8} and at \url{https://www.fau.tv/clip/id/4301}.
+    These are lecture notes by Apoorv Potnis of the lecture `\selectlanguage{ngerman}Aufgetakelte Hilberträume\selectlanguage{english}' or `Rigged Hilbert Spaces', given by \textbf{Prof.\@ Frederic Paul Schuller}, as the eighth lecture in the course `\selectlanguage{ngerman}Theoretische Physik 2: Theoretische Quantenmechanik\selectlanguage{english}' in 2014 at the \selectlanguage{ngerman}Friedrich-Alexander-Universität Erlangen-Nürnberg\selectlanguage{english}. While the original lecture is in German, these notes are in English and have been prepared using YouTube's automatic subtitle translation tool. The lecture is available at \url{https://youtu.be/zYqFU6qC19g?si=DdZMqKqHepRkFd6P} and at \url{https://www.fau.tv/clip/id/4301}.
 
-    The source code, updates and corrections to this document can be found on this GitHub repository: \url{https://github.com/apoorvpotnis/schuller_rigged_hilbert_spaces}. The source code, along with some other files, is embedded in this PDF. Comments and corrections can be mailed at \href{mailto:apoorvpotnis@gmail.com}{\texttt{apoorvpotnis@gmail.com}} or opened as an issue in the GitHub repository. This \textsc{pdf} was compiled on \today.
+    The source code, updates and corrections to this document can be found on this GitHub repository: \url{https://github.com/apoorvpotnis/schuller_rigged_hilbert_spaces}. The source code, along with some other files, is embedded in this \textsc{pdf}. Comments and corrections can be mailed at \href{mailto:apoorvpotnis@gmail.com}{\texttt{apoorvpotnis@gmail.com}} or opened as an issue in the GitHub repository. This \textsc{pdf} was compiled on \today.
 
-    In these notes, we assume that the reader is already familiar with all of the material covered upto `Lecture 11: Spectral Theorem', in Schuller's lectures in his English quantum mechanics series~\cite{SchullerVideos, Schuller}. We shall make frequent use of concepts and results from these lectures without mentioning.
+    In these notes, we assume that the reader is already familiar with all of the material covered up to `Lecture 11: Spectral Theorem', in Schuller's lectures in his English quantum mechanics series~\cite{SchullerVideos, Schuller}. We shall make frequent use of concepts and results from these lectures without mentioning.
 
     \tableofcontents
 
     \section{Introduction}
 
-    The word `rigged' here means `to make ready' or `equip with', as in the sense of rigging a ship with ropes and sails, making the ship ready to sail. In quantum mechanics, it turns out that the Hilbert space we have so far been considering is not completely adequate for all the purposes. In particular, the eigenvalue equation for some Hilbert spaces does not admit any solutions in the space. One way to resolve this problem is to construct a space larger than our Hilbert space, such that this space contains the eigenfunctions we need.
+    The word `rigged' here means `to make ready' or `equip with', as in the sense of rigging a ship with ropes and sails, making the ship ready to sail. In quantum mechanics, it turns out that the Hilbert space we have so far been considering is not completely adequate for all purposes. In particular, the eigenvalue equation for some Hilbert spaces does not admit any solutions in the space. One way to resolve this problem is to construct a space larger than our Hilbert space, such that this space contains the eigenfunctions we need.
 
-    It was seen in the previous lectures that a self-adjoint operator acting on an infinite-dimensional Hilbert space need not admit a basis of eigenvectors in the space. For example, consider the position operator $\position$ on the Hilbert space \(\ltwor\), defined on a dense domain \(\domain_{\position} \subset \ltwor\) as follows. The domain $\domain_{\position}$ is determined by Stone's  theorem.
+    It was seen in the previous lectures that a self-adjoint operator acting on an infinite-dimensional Hilbert space need not admit a basis of eigenvectors in the space. For example, consider the position operator $\position$ on the Hilbert space \(\ltwor\), defined on a dense domain \(\domain(\position) \subset \ltwor\) as follows. The domain $\domain(\position)$ is determined by Stone's  theorem.
     \begin{align*}
         \position &\colon \domain_\position \rightarrow \ltwor,\\
         \position &\colon [\psi](x) \mapsto (\position[\psi])(x) = [x \cdot \psi(x)],
     \end{align*}
     where \([\psi] \in \ltwor\) and \(x \in \rr\). Note that equivalence classes of functions which differ only on a measure zero set belong to \(\ltwor\). If $[\psi] = [\phi]$, then $x \cdot \psi(x) = x \cdot \phi(x)$ almost everywhere. The position operator is thus well-defined. Even though different representatives belonging to the same equivalence class may differ at individual points, their integral on a Borel measurable set is the same. Thus, this does not create any ambiguities when calculating probabilities on Borel measurable sets.
 
-    Let $\hilbert$ be a Hilbert space over $\rr$ and $\domain \subset \hilbert$. A $\lambda \in \rr$ is said to be an eigenvalue of a linear operator $A \colon \domain \rightarrow \hilbert$ with the eigenvector $\psi \in \domain\setminus\{0\}$ if the eigenvalue equation
+    Let $\hilbert$ be a Hilbert space over $\cc$. A $\lambda \in \rr$ is said to be an eigenvalue of a linear operator $A \colon \domain(A) \rightarrow \hilbert$ with the eigenvector $\psi \in \domain(A)\setminus\{0\}$ if the eigenvalue equation
     \[A\psi = \lambda \psi\]
-    is satisfied.
+    is satisfied. Here, \(\domain(A) \subset \ltwor\).
     The ``solution'' of the eigenvalue equation
     \[(\position[\psi])(x) = (\lambda\cdot[\psi])(x)\]
     was seen to be
@@ -494,9 +499,9 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
         1 & \text{if $x = \lambda$}.
     \end{cases}
     \]
-    But \[[\dirac_\lambda] = [0],\] as $\dirac_\lambda$ has support only on a single point, a set of measure zero. An eigenvector cannot be a zero vector. Thus, the eigenvectors of the position operator, if they exist, do not lie in $\ltwor$ and consequently, we cannot form an eigenbasis using vectors from the space itself. This is in contrast with finite-dimensional Hilbert spaces, where we can form a basis of eigenvectors. We need to enlarge to our space to accommodate the eigenvectors of the position operator.
+    But \[[\dirac_\lambda] = [0],\] as $\dirac_\lambda$ has support only on a single point, a set of measure zero. An eigenvector cannot be a zero vector. Thus, the eigenvectors of the position operator, if they exist, do not lie in $\ltwor$ and consequently, we cannot form an eigenbasis using vectors from the space itself. This is in contrast with finite-dimensional Hilbert spaces, where we can form a basis of eigenvectors. We need to enlarge our space to accommodate the eigenvectors of the position operator.
 
-    One can use the spectral theorem to decompose the position operators using projection valued measures and not deal with Dirac deltas, and that is indeed what most of the treatments do, but we shall not pursue this approach in this lecture. Instead, we shall develop machinery in order to do rigorously what most of the physicists do formally.
+    One can use the spectral theorem to decompose the position operator using projection valued measures and not deal with Dirac deltas, and that is indeed what most of the treatments do, but we shall not pursue this approach in this lecture. Instead, we shall develop machinery in order to do rigorously what most of the physicists do formally.
 
     \section{The idea of a rigged Hilbert space}
 
@@ -525,17 +530,17 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
 
     We shall then `lift' or extend these operators to the larger space $\distr$, such that they linearly map $\distr$ to $\distr$, and it is in this space of tempered distributions that the eigenvalue equation shall be satisfied. Moreover, these distributions form an eigenbasis for the larger space. For example, the Dirac delta \textit{distribution}, not function, mentioned earlier, belongs to this space.
 
-    While we construct these spaces for $\ltwor$ here, they can be constructed for more abstract Hilbert spaces as well. We thus `rig' the Hilbert space with two other spaces $\symcal{S}$ and $\symcal{S}^\times$:
+    While we construct these spaces for $\ltwor$ here, they can be constructed for more abstract Hilbert spaces as well. We thus `rig' the Hilbert space $\symcal{H}$ with two other spaces $\symcal{S}$ and $\symcal{S}^\times$:
     \[
     \symcal{S} \subset \hilbert \subset \symcal{S}^\times.
     \]
-    The triple $(\symcal{S}, \hilbert, \symcal{S}^\times)$ is called as a \textit{Gelfand triple}, in the honour of the Russian mathematician Israel Moiseevich Gelfand.
+    The triple $(\symcal{S}, \hilbert, \symcal{S}^\times)$ is called a \textit{Gelfand triple}, in honour of the Russian mathematician Israel Moiseevich Gelfand.
 
     \section{The Schwartz space and tempered distributions}
 
-    A seminorm $\norm{\cdot} \colon V \rightarrow \rr_{\geq 0}$ on a vector space $V$ over $\cc$ is a real-valued non-negative function such that $\norm{\lambda v} = \abs{\lambda} v$ and $\norm{v + w} \leq \norm{v} + \norm{w}$, for all $v,w \in V$ and $\lambda \in \cc$. A seminorm which vanishes only for $v=0$ is called a norm. A seminorm induces a topology $\tau$ on $V$ defined by open sets of the form $\{v\in V \mid \norm{v} < r\}$, where $r \in \rr_{\geq 0}$.
+    A seminorm $\norm{\cdot} \colon V \rightarrow \rr_{\geq 0}$ on a vector space $V$ over $\cc$ is a real-valued non-negative function such that $\norm{\lambda v} = \abs{\lambda} \norm{v}$ and $\norm{v + w} \leq \norm{v} + \norm{w}$, for all $v,w \in V$ and $\lambda \in \cc$. A seminorm which vanishes only for $v=0$ is called a norm. A seminorm induces a topology $\tau$ on $V$ defined by open sets of the form $\{v\in V \mid \norm{v} < r\}$, where $r \in \rr_{\geq 0}$.
 
-    Let $\cinfinity(\rr, \cc)$ denote infinitely-differentiable, functions from $\rr$ to $\cc$. We need a 2-parameter family of seminorms on $\cinfinity(\rr, \cc)$, defined as follows.
+    Let $\cinfinity(\rr, \cc)$ denote infinitely-differentiable functions from $\rr$ to $\cc$. We need a 2-parameter family of seminorms on $\cinfinity(\rr, \cc)$, defined as follows.
     \begin{align*}
         \norm{\cdot}_{k,l} &\colon \cinfinity(\rr, \cc) \rightarrow \rr,\\
         \norm{f}_{k,l} &\coloneq \sup_{x \in \rr}\abs{x^k \cdot f^{(l)}(x)},
@@ -559,7 +564,7 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
     \[
     \Phi[f] = \int_{\rr} \der x \sum_{m \in \nn} \Phi_m (x) \cdot f^{(m)} (x).
     \]
-    It is customary to use the notation $\Phi[f]$ to use the denote that $\Phi$ acts on $f$. Thus, in order to define a tempered distribution, one only needs to define a family of  continuous, polynomially bounded functions from the reals to complex numbers. It is in general useful to search for solutions in the space of distributions in the study of linear differential equations.
+    It is customary to use the notation $\Phi[f]$ to denote that $\Phi$ acts on $f$. Thus, in order to define a tempered distribution, one only needs to define a family of  continuous, polynomially bounded functions from the reals to complex numbers. It is in general useful to search for solutions in the space of distributions in the study of linear differential equations.
 
     We look at the famous example of the Dirac distribution $\dirac_\lambda \in \distr$. It is defined by the following family of functions. $(\dirac_\lambda)_m \colon \rr \rightarrow \cc$ for all $m \in \nn$.
     \[
@@ -579,16 +584,15 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
     \begin{align*}
         \dirac_\lambda [f] &= \left(\left[x \cdot f^{(1)}(x)\right]_{x = \lambda}^{x = +\infty} - \int_\lambda^{+\infty} x^{(1)}\cdot f^{(1)} (x) \der x\right) - \left[\lambda \cdot f^{(1)} (x)\right]_{x = \lambda}^{x = +\infty}.
     \end{align*}
-    $f$ and its all derivatives vanish at $+\infty$ since $f \in \schwartzr$. Thus, we are left with
+    $f$ and all its derivatives vanish at $+\infty$ since $f \in \schwartzr$. Thus, we are left with
     \begin{align*}
         \dirac_\lambda [f] &= \lambda \cdot f^{(1)}(\lambda) - f(\lambda) - \lambda \cdot f^{(1)}(\lambda),\\
         \dirac_\lambda [f] &= f(\lambda).
     \end{align*}
 
-    We now look at plane waves $E_k \in \distr$ of wavenumber $k \in \nn$. These are very important for quantum mechanics. $E_k$ is defined by \[(E_k)_0 (x) = \e^{\i kx}\] and $(E_k)_m = 0$ for all $m \neq 0$. Note that $E_k \notin \ltwor \supset \schwartzr$.
+    We now look at plane waves $E_k \in \distr$ of wavenumber $k \in \rr$. These are very important for quantum mechanics. $E_k$ is defined by \[(E_k)_0 (x) = \e^{\i kx}\] and $(E_k)_m = 0$ for all $m \neq 0$. Note that $E_k \notin \ltwor \supset \schwartzr$.
 
-    \section{Embedding of \texorpdfstring{\(\ltwor\)}{L²(ℝ)} in \texorpdfstring{\(\symbfcal{S}^\times(\symbb{R})\)}{𝒮⁺(ℝ)}}
-
+    \section{Embedding of \texorpdfstring{\(\ltwor\)}{L²(ℝ)} in \texorpdfstring{\(\distr\)}{S⁺(ℝ)}}
 
     Tempered distributions are defined as continuous linear functionals on the Schwartz space in most literature. The topology on $\schwartzr$ is the one induced by seminorms. The equivalence of this definition and Prof.\@ Schuller's definition is asked as a problem in the book of Reed and Simon~\cite[prob.~24, chp.~5, p.~176]{Reed}.
 
@@ -606,7 +610,7 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
 
     It can be shown that the above embedding function defines each $\Phi_\phi[f]$ to be a continuous linear functional for all $\phi \in \ltwor$ and $f \in \schwartzr$. Thus, $\Phi_\phi$ is a tempered distribution. This enables us to write $\ltwor \xhookrightarrow{} \distr$, and by abuse of notation, $\eta (\ltwor) \subset \distr$ can be written as $\ltwor \subset \distr$.
 
-    \section{Lifting differential operators from \texorpdfstring{\(\symbfcal{S}(\symbb{R})\)}{𝒮(ℝ)}}
+    \section{Lifting differential operators from \texorpdfstring{\(\schwartzr\)}{S(ℝ)}}
 
     Let $D$ be defined as follows.
     \begin{align*}
@@ -617,7 +621,7 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
     \[
     (Df)(x) \coloneq \sum_{m \in M} D_m(x) \cdot f^{(m)} (x).
     \]
-    Here, $M$ is a finite subset of $\nn$, and $D_m$ is a complex polynomial, i.e.\@ $D_m \in \cc[x]$. Such a $D$ is called a differential operator. By the defining properties of the Schwartz space, it can be seen that the operator is well-defined: the range is $\distr$. $D$ has this nice property of mapping into the space itself.
+    Here, $M$ is a finite subset of $\nn$, and $D_m$ is a complex polynomial, i.e.\@ $D_m \in \cc[x]$. Such a $D$ is called a differential operator. By the defining properties of the Schwartz space, it can be seen that the operator is well-defined---the range is $\schwartzr$. $D$ has this nice property of mapping into the space itself.
 
     We immediately see that the position and momentum operators are differential operators.
     \[
@@ -629,7 +633,7 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
     \]
     with $\momentum(x) = -\i\hbar$ and $\momentum(x) = 0$ for all other $m \in \nn$.
 
-    However, the Schwartz space $\schwartzr$ is a very small space. We want to somehow define the differential operator on $\ltwor$, but as we already know, the functions belonging to $\ltwor$ may not be differentiable. The differential operator can be extended or lifted to \(\distr\), and consequently to $\ltwor$, using what is called as a \textit{weak derivative}. We won't discuss the weak derivative in this lecture, but the interested reader is requested to look at the ninth lecture `Case study: Momentum operator' of the English quantum mechanics series~\cite{Schuller, SchullerVideos}. We now define the lift $\lift$ of the operator $D$ as follows.
+    However, the Schwartz space $\schwartzr$ is a very small space. We want to somehow define the differential operator on $\ltwor$, but as we already know, the functions belonging to $\ltwor$ may not be differentiable. The differential operator can be extended or lifted to \(\distr\), and consequently to $\ltwor$, using what is called a \textit{weak derivative}. We shall not discuss the weak derivative in this lecture, but the interested reader is requested to look at the ninth lecture `Case study: Momentum operator' of the English quantum mechanics series~\cite{Schuller, SchullerVideos}. We now define the lift $\lift$ of the operator $D$ as follows.
     \begin{align*}
         \lift &\colon \distr \rightarrow \distr,\\
         \lift &\colon \Phi \mapsto \lift\Phi,
@@ -638,33 +642,29 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
     \[
     (\lift\Phi)[f] \coloneq \Phi\left[\sum_{m\in M} (-1)^m (D_m f)^{(m)} (x)\right],
     \]
-    where $f \in \schwartzr$ and $M$ is a finite subset of $\nn$.\footnote{The lift formula as provided in the lecture contains a slight mistake. The correct formula provided here has been taken from eq.~(V.5) of ~\cite[p.~149]{Reed}.} Weak derivatives are defined using the integration by parts formula and the $(-1)^m$ factor is a consequence of this.
+    where $f \in \schwartzr$ and $M$ is a finite subset of $\nn$.\footnote{The lift formula as provided in the lecture contains a slight mistake. The correct formula provided here has been taken from eq.~(V\kern-1.5pt.5) of~\cite[p.~149]{Reed}.} Weak derivatives are defined using the integration by parts formula and the $(-1)^m$ factor is a consequence of this.
 
     \section{Spectrum of self-adjoint operators}
 
-    Let $A \colon \domain_A \rightarrow \hilbert$ be a self-adjoint operator, where $\domain_A$ is a dense subset of $\hilbert$. We denote the range of the operator $(A - \lambda \cdot \identity)$ by $w_A(\lambda)$, where $\lambda \in \cc$ and $\identity \colon \hilbert \rightarrow \hilbert$ denotes the identity function on $\hilbert$.
+    Let $A \colon \domain(A) \rightarrow \hilbert$ be a self-adjoint operator, where $\domain(A)$ is a dense subset of $\hilbert$. We denote the range of the operator $(A - \lambda\identity)$ by $\operatorname{ran}(A - \lambda\identity)$, where $\lambda \in \cc$ and $\identity \colon \hilbert \rightarrow \hilbert$ denotes the identity function on $\hilbert$. We say that $\lambda \in \cc$ is a \textit{regular point} if and only if
     \[
-    w_A(\lambda) \coloneq (A - \lambda \cdot \identity)\,\domain_A.
+    \operatorname{ran}(A - \lambda\identity) = \overline{\operatorname{ran}(A - \lambda\identity)} = \hilbert.
     \]
-    We say that $\lambda \in \cc$ is a \textit{regular point} if and only if
-    \[
-    w_A(\lambda) = \overline{w_A(\lambda)} = \hilbert.
-    \]
-    Here, $\overline{w_A(\lambda)}$ denotes the topological closure of $w_A(\lambda)$. The set of regular points is called a \textit{resolvent set}. The complement of the resolvent set is known as the \textit{spectrum} of the operator, denoted as $\spec(A)$. $\spec(A) = \cc \setminus \resolvent(A)$.
+    Here, $\overline{\operatorname{ran}(A - \lambda\identity)}$ denotes the topological closure of $\operatorname{ran}(A - \lambda\identity)$. The set of regular points is called a \textit{resolvent set}. The complement of the resolvent set is known as the \textit{spectrum} of the operator, denoted by $\spec(A)$. If we denote the resolvent set of $A$ by $\resolvent(A)$, we have that \[\spec(A) = \cc \setminus \resolvent(A).\]
 
     We define a decomposition of the spectrum of our self-adjoint operator $A$ as follows.
     \begin{enumerate}
         \item The \textit{pure point spectrum} of $A$, $\spec_\text{pp}(A)$, is defined as
         \[
-        \spec_\text{pp}(A) \coloneq \{\lambda \in \cc \mid w_A(A - \lambda \cdot \identity) = \overline{w_A(A - \lambda \cdot \identity)} \neq \hilbert\}.
+        \spec_\text{pp}(A) \coloneq \{\lambda \in \cc \mid \operatorname{ran}(A - \lambda\identity) = \overline{\operatorname{ran}(A - \lambda\identity)} \neq \hilbert\}.
         \]
         \item The \textit{point embedded in continuum spectrum} of $A$, $\spec_{\text{pec}}(A)$, is defined as
         \[
-        \spec_{\text{pec}}(A) \coloneq \{\lambda \in \cc \mid w_A(A - \lambda \cdot \identity) \neq \overline{w_A(A - \lambda \cdot \identity)} \neq \hilbert\}.
+        \spec_{\text{pec}}(A) \coloneq \{\lambda \in \cc \mid \operatorname{ran}(A - \lambda\identity) \neq \overline{\operatorname{ran}(A - \lambda\identity)} \neq \hilbert\}.
         \]
         \item The \textit{purely continuous spectrum} of $A$, $\spec_\text{pc}(A)$, is defined as
         \[
-        \spec_\text{pc}(A) \coloneq \{\lambda \in \cc \mid w_A(A - \lambda \cdot \identity) \neq \overline{w_A(A - \lambda \cdot \identity)} = \hilbert\}.
+        \spec_\text{pc}(A) \coloneq \{\lambda \in \cc \mid \operatorname{ran}(A - \lambda\identity) \neq \overline{\operatorname{ran}(A - \lambda\identity)} = \hilbert\}.
         \]
     \end{enumerate}
     These form a partition of $\spec(A)$, i.e. they are pairwise disjoint and their union is $\spec(A)$.
@@ -672,12 +672,12 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
     We further define the \textit{point spectrum} of $A$, $\spec_{\symrm{p}}(A)$, to be the union of the pure point and the point embedded in continuum spectra.
     \begin{align*}
         \spec_{\symrm{p}}(A) &=  \spec_\text{pp}(A) \cup \spec_{\text{pec}}(A)\\
-        \spec_{\symrm{p}}(A) &= \{\lambda \in \cc \mid\overline{w_A(A - \lambda \cdot \identity)} \neq \hilbert\}.
+        \spec_{\symrm{p}}(A) &= \{\lambda \in \cc \mid\overline{\operatorname{ran}(A - \lambda\identity)} \neq \hilbert\}.
     \end{align*}
-    We similarly define the \textit{continuous spectrum} of $A$, $\spec_\text{c} (A)$, to be the union of the continuous and the point embedded in continuum spectra.
+    We similarly define the \textit{continuous spectrum} of $A$, $\spec_\text{c} (A)$, to be the union of the purely continuous and the point embedded in continuum spectra.
     \begin{align*}
         \spec_{\symrm{c}}(A) &=  \spec_\text{pc}(A) \cup \spec_{\text{pec}}(A)\\
-        \spec_{\symrm{c}}(A) &= \{\lambda \in \cc \mid w_A(A - \lambda \cdot \identity) \neq \overline{w_A(A - \lambda \cdot \identity)}\}.
+        \spec_{\symrm{c}}(A) &= \{\lambda \in \cc \mid \operatorname{ran}(A - \lambda\identity) \neq \overline{\operatorname{ran}(A - \lambda\identity)}\}.
     \end{align*}
     Since $\spec_{\text{c}}(A)$ may not be empty, the point and continuous spectra may not in general form a partition of the spectrum. We note an important result that the spectrum of a self-adjoint operator on a Hilbert space is always real, i.e.
     \[
@@ -688,9 +688,7 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
     \[
     \hat{A} \Phi = \lambda \Phi
     \]
-    is known as a \textit{generalised eigenvalue} equation with the \textit{generalised eigenvector} or \textit{eigendistribution} $\Phi \in \distr \setminus \{0\}$ and $\lambda \in \cc$.
-    The spectrum of $A$ is then defined as the set of solutions of the above equation.
-
+    is known as a \textit{generalised eigenvalue} equation with the \textit{generalised eigenvector} or \textit{eigendistribution} $\Phi \in \distr \setminus \{0\}$ and $\lambda \in \cc$. The set of generalised eigenvalues $\lambda$ satisfying the above equation is defined as the spectrum of $A$.
     As an example, we request the reader to see that for $\lambda \in \rr$,
     \[
     \hat{\position}\dirac_\lambda = \lambda \cdot \dirac_\lambda,
@@ -704,7 +702,7 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
 
     \section{Bras and kets}
 
-    Prof.\@ Schuller does not discuss this during the lecture. I (Apoorv) have added this extra information.
+    Prof.\@ Schuller does not discuss this section during the lecture. The author of these notes, i.e. Apoorv, has added this extra information.
 
     We defined the space of tempered distributions $\distr$ as the space of continuous linear functionals on $\schwartzr$. A mapping
     \begin{align*}
@@ -731,7 +729,7 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
         (\Lambda(\Phi))[f] \coloneq \int_{\rr} \der x \sum_{m \in \nn} \Phi_m (x) \cdot \overline{f^{(m)} (x)}.
     \end{align*}
 
-    Just like we embedded $\ltwor$ in $\schwartzr$, we can embed $\ltwor$ in $\anti$. We define the embedding
+    Just like we embedded $\ltwor$ in $\distr$, we can embed $\ltwor$ in $\anti$. We define the embedding
     \begin{align*}
         \omega &\colon \ltwor \rightarrow \anti,\\
         \omega &\colon \phi \mapsto \Psi_\phi,
@@ -743,7 +741,7 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
     where $\overline{f(x)}$ denotes the complex conjugate of $f(x)$.
     It can be shown that the above embedding function defines each $\Psi_\phi[f]$ to be a continuous anti-linear functional for all $\phi \in \ltwor$ and $f \in \schwartzr$. Just like the case for tempered distributions, we have $\ltwor \xhookrightarrow{} \anti$, and by abuse of notation, $\omega(\ltwor) \subset \anti$ can be written as $\ltwor \subset \anti$.
 
-    Elements of $\anti$ are identified with \textit{kets}, and elements of $\distr$ are identified with \textit{bras}, in quantum mechanics. Thus, we can call $\anti$ the \textit{ket-space} and $\distr$ the \textit{bra-space}. Since $\Lambda$ is an isomorphism, there is a one-to-one correspondence between kets and bras. It should be noted that some authors such as Bowers~\cite[chp.~5]{Bowers} call the images $\eta(\ltwor)$ and $\omega(\ltwor)$ of the embeddings $\ltwor \xhookrightarrow{} \distr$ and $\ltwor \xhookrightarrow{} \anti$ as the bra-space and the ket-space respectively. We recommend the reader consult chp.~5 in the book of Bowers~\cite{Bowers} for a discussion of the Dirac calculus in a mathematically rigorous fashion.
+    Elements of $\anti$ are identified with \textit{kets}, and elements of $\distr$ are identified with \textit{bras}, in quantum mechanics. Thus, we can call $\anti$ the \textit{ket-space} and $\distr$ the \textit{bra-space}. Since $\Lambda$ is an isomorphism, there is a one-to-one correspondence between kets and bras. It should be noted that some authors such as Bowers~\cite[chp.~5]{Bowers} call the images $\eta(\ltwor)$ and $\omega(\ltwor)$ of the embeddings $\ltwor \xhookrightarrow{} \distr$ and $\ltwor \xhookrightarrow{} \anti$ as the bra-space and the ket-space respectively. We recommend that the reader consult chp.~5 in the book of Bowers~\cite{Bowers} for a discussion of the Dirac calculus in a mathematically rigorous fashion.
 
     % 	\section{Properties of the Dirac delta distribution}
     %
