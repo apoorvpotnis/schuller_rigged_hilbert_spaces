@@ -136,7 +136,7 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
         },
         ["NewCMMath-Bold"] = {
           ["uni211D.bb"] = { topright = { { kern = -30 } } }, -- double-struck upright uppercase R
-          ["L"] = {topright = { { kern = -50 } } }
+          ["L"] = {topright = { { kern = -40 } } }
         }
     }
     local function addkerns(tfmdata)
@@ -292,6 +292,16 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
         publisher = {Cambridge University Press, Cambridge},
         title = {Lectures on Quantum Mechanics},
         year = {2020}
+    }
+
+    @book{Ticciati,
+        author = {Ticciati, Robin},
+        isbn = {0-521-63265-X},
+        publisher = {Cambridge University Press, Cambridge},
+        title = {Quantum Field Theory for Mathematicians},
+        year = {1999},
+        series = {Encyclopedia of Mathematics and its Applications},
+        volume = {72}
     }
 
     @mvbook{Reed,
@@ -480,7 +490,7 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
 
     It was seen in the previous lectures that a self-adjoint operator acting on an infinite-dimensional Hilbert space need not admit a basis of eigenvectors in the space. For example, consider the position operator $\position$ on the Hilbert space \(\ltwor\), defined on a dense domain \(\domain(\position) \subset \ltwor\) as follows. The domain $\domain(\position)$ is determined by Stone's  theorem.
     \begin{align*}
-        \position &\colon \domain_\position \rightarrow \ltwor,\\
+        \position &\colon \domain(\position) \rightarrow \ltwor,\\
         \position &\colon [\psi](x) \mapsto (\position[\psi])(x) = [x \cdot \psi(x)],
     \end{align*}
     where \([\psi] \in \ltwor\) and \(x \in \rr\). Note that equivalence classes of functions which differ only on a measure zero set belong to \(\ltwor\). If $[\psi] = [\phi]$, then $x \cdot \psi(x) = x \cdot \phi(x)$ almost everywhere. The position operator is thus well-defined. Even though different representatives belonging to the same equivalence class may differ at individual points, their integral on a Borel measurable set is the same. Thus, this does not create any ambiguities when calculating probabilities on Borel measurable sets.
@@ -741,7 +751,7 @@ BoldSlantedFont=NewCMSans10-BoldOblique.otf,%
     where $\overline{f(x)}$ denotes the complex conjugate of $f(x)$.
     It can be shown that the above embedding function defines each $\Psi_\phi[f]$ to be a continuous anti-linear functional for all $\phi \in \ltwor$ and $f \in \schwartzr$. Just like the case for tempered distributions, we have $\ltwor \xhookrightarrow{} \anti$, and by abuse of notation, $\omega(\ltwor) \subset \anti$ can be written as $\ltwor \subset \anti$.
 
-    Elements of $\anti$ are identified with \textit{kets}, and elements of $\distr$ are identified with \textit{bras}, in quantum mechanics. Thus, we can call $\anti$ the \textit{ket-space} and $\distr$ the \textit{bra-space}. Since $\Lambda$ is an isomorphism, there is a one-to-one correspondence between kets and bras. It should be noted that some authors such as Bowers~\cite[chp.~5]{Bowers} call the images $\eta(\ltwor)$ and $\omega(\ltwor)$ of the embeddings $\ltwor \xhookrightarrow{} \distr$ and $\ltwor \xhookrightarrow{} \anti$ as the bra-space and the ket-space respectively. We recommend that the reader consult chp.~5 in the book of Bowers~\cite{Bowers} for a discussion of the Dirac calculus in a mathematically rigorous fashion.
+    Elements of $\anti$ are identified with \textit{kets}, and elements of $\distr$ are identified with \textit{bras}, in quantum mechanics. Thus, we can call $\anti$ the \textit{ket-space} and $\distr$ the \textit{bra-space}~\cite[p.~3]{Ticciati}. Since $\Lambda$ is an isomorphism, there is a one-to-one correspondence between kets and bras. It should be noted that some authors such as Bowers~\cite[chp.~5]{Bowers} call the images $\eta(\ltwor)$ and $\omega(\ltwor)$ of the embeddings $\ltwor \xhookrightarrow{} \distr$ and $\ltwor \xhookrightarrow{} \anti$ as the bra-space and the ket-space respectively. We recommend that the reader consult chp.~5 in the book of Bowers~\cite{Bowers} for a discussion of the Dirac calculus in a mathematically rigorous fashion.
 
     % 	\section{Properties of the Dirac delta distribution}
     %
